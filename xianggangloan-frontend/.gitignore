@@ -1,0 +1,15 @@
+# gitignore
+
+rev/
+dist/
+build/
+target/
+.log/
+.gradle/
+.settings/
+node_modules/
+.project
+.classpathdev
+build
+.idea/
+.idea/workspace.xml

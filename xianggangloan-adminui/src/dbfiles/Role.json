@@ -1,0 +1,8 @@
+﻿[
+  {
+    "Id": 1,    
+    "Role": "Admin",
+    "IsEnable": true,    
+    "Description": "管理员"
+  }
+]

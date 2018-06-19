@@ -1,0 +1,102 @@
+﻿[
+  {
+    "Id": 1,
+    "ParentId": 0,
+    "Key": "T_UserManagement",
+    "IsEnable": true,
+    "ICon": "http://www.baidu.com#",
+    "URL": "login",
+    "Description": "用户管理",
+    "Order": 1
+  },
+  {
+    "Id": 1001,
+    "ParentId": 1,
+    "Key": "T_AddUser",
+    "IsEnable": true,
+    "ICon": "http://www.baidu.com#",
+    "URL": "http://www.baidu.com",
+    "Description": "新增用户",
+    "Order": 1
+  },
+  {
+    "Id": 1001001,
+    "ParentId": 1001,
+    "Key": "T_AddVIPUser",
+    "IsEnable": true,
+    "ICon": "http://www.baidu.com#",
+    "URL": "http://www.baidu.com",
+    "Description": "新增VIP用户",
+    "Order": 1
+  },
+  {
+    "Id": 1001002,
+    "ParentId": 1001,
+    "Key": "T_AddAdvancedUser",
+    "IsEnable": true,
+    "ICon": "http://www.baidu.com#",
+    "URL": "http://www.baidu.com",
+    "Description": "新增高级用户",
+    "Order": 2
+  },
+  {
+    "Id": 1001003,
+    "ParentId": 1001,
+    "Key": "T_AddNormalUser",
+    "IsEnable": true,
+    "ICon": "http://www.baidu.com#",
+    "URL": "http://www.baidu.com",
+    "Description": "新增普通用户",
+    "Order": 3
+  },
+  {
+    "Id": 1002,
+    "ParentId": 1,
+    "Key": "T_UpdateUser",
+    "IsEnable": true,
+    "ICon": "http://www.baidu.com#",
+    "URL": "http://www.baidu.com",
+    "Description": "修改用户",
+    "Order": 2
+  },
+  {
+    "Id": 1003,
+    "ParentId": 1,
+    "Key": "T_DeleteUser",
+    "IsEnable": true,
+    "ICon": "http://www.baidu.com#",
+    "URL": "http://www.baidu.com",
+    "Description": "删除用户",
+    "Order": 3
+  },
+  {
+    "Id": 2,
+    "ParentId": 0,
+    "Key": "T_RoleManagement",
+    "IsEnable": true,
+    "ICon": "http://www.baidu.com#",
+    "URL": "http://www.hao123.com",
+    "Description": "角色管理",
+    "Order": 4
+  },
+  {
+    "Id": 2001,
+    "ParentId": 2,
+    "Key": "T_AddRole",
+    "IsEnable": true,
+    "ICon": "http://www.baidu.com#",
+    "URL": "http://www.hao123.com",
+    "Description": "新增角色",
+    "Order": 1
+  },
+  {
+    "Id": 2002,
+    "ParentId": 2,
+    "Key": "T_DeleteRole",
+    "IsEnable": false,
+    "ICon": "http://www.baidu.com#",
+    "URL": "http://www.hao123.com",
+    "Description": "删除角色",
+    "Order": 2
+  }
+]
