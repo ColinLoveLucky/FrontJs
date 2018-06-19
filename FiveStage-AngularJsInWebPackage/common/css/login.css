@@ -1,0 +1,27 @@
+.middle-box {
+    max-width: 300px;
+    z-index: 100;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+.text-center {
+    background: #FBFBFB;
+}
+
+.animated {
+    animation-fill-mode: inherit;
+}
+
+.fadeInDown {
+    animation-name: fadeInDown;
+}
+
+.ht-300 {
+    height: 280px;
+    padding-top: 145px;
+}
+
+.ht-300 .white-border {
+    border: 6px solid #FFFFFF;
+}

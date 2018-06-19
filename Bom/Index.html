@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--用户操作	Expires/Cache-Control	Last-Modied/Etag-->
+    <!--地址栏回车	有效	有效-->
+    <!--页面链接跳转	有效	有效-->
+    <!--新开窗口	有效	有效-->
+    <!--前进回退	有效	有效-->
+    <!--F5刷新	无效	有效-->
+    <!--Ctrl+F5强制刷新	无效	无效-->
+
+    <!--强制缓存-->
+    <!--不用去服务器端查询-->
+    <!--Expires 缺点 服务器端与客户端时间差别大-->
+    <!--所以出现了Max-age -->
+    <!--<meta http-equiv="Cache-Control" content="max-age=7200"  />&lt;!&ndash;Http1.1&ndash;&gt;-->
+    <!--<meta http-equiv="Expires" content="Mon, 20 Jul 2009 23:00:00 GMT" />&lt;!&ndash;Http1.0&ndash;&gt;-->
+    <!--<meta http-equiv="Pragma"  content="Pragma"/>&lt;!&ndash;Http1.0&ndash;&gt;-->
+    <!--非强制性缓存-->
+    <!--Last Modify Http1.0 Response-->
+    <!--Last Modify-since Http1.0 Request-->
+    <!--Last Modify 去服务端验证是否过期-->
+    <!--缺点：无法精确到毫秒,文件名称改变重新请求资源-->
+
+    <!--Etag Http1.1 Response-->
+    <!--If-None-Match Http1.1  Request-->
+    <!--Etag 根据资源号来判断的，每个资源号生成一个Etag-->
+    <!---->
+    <!--非强制性缓存先判断Etag-->
+    <!--在比较LastModify-->
+
+    <meta http-equiv="Cache-Control" content="public"/>
+    <!--<meta http-equiv="Expires" content="Thu, 10 Aug 2017 21:30:42 GMT"/>-->
+    <title>Dom</title>
+</head>
+<body>
+<input id="btnClose" type="button" value="Close"/><br/>
+<input id="btnAlert" type="button" value="Alert"><br/>
+<div id="divSetTimeOut"></div>
+<input id="btnClearInterval" type="button" value="ClearInterval"/><br/>
+<div id="divLayer" style="width: 200px;height: 200px;background-color:Gray;display: none;"></div>
+<input type="text" id="txtBaseUrl"/>
+<div id="divTitle"></div>
+<div id="divHref"></div>
+<div id="divPortocol"></div>
+<div id="divHost"></div>
+<div id="divPort"></div>
+<div id="divNavigatorName"></div>
+<div id="divNavigatorVersion"></div>
+<div id="divNavigatorCookie"></div>
+<div id="divNavigatorPlatForm"></div>
+<div id="divUserAgent"></div>
+<div id="divScreenWidth"></div>
+<input type="button" id="btnReload" value="Reload"></input>
+<input type="button" id="btnCache" value="Go Cache"/>
+<textarea id="txtRemark" rows="4" cols="20">
+</textarea>
+<input type="button" id="btnInitScroll" value="InitScroll"/>
+<input type="button" id="btnAfterScroll" value="AfterScroll">
+<div id="divScroll"></div>
+<script type="text/javascript" src="Js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnClose").click(function () {
+            window.close();
+        });
+        $("#btnAlert").click(function () {
+            window.alert("message");
+        })
+        var t = window.setTimeout(function () {
+            $("#divSetTimeOut").html("SetTimeOut:HelloWorld From 1 second Display");
+        }, 1000);
+
+        var tt = window.setInterval(function () {
+            $("#divLayer").slideToggle();
+        }, 1000);
+
+        $("#btnClearInterval").click(function () {
+            window.clearInterval(tt);
+        })
+        $("#txtBaseUrl").val(document.baseURI);
+        $("#divTitle").html("Title:" + document.title);
+        $("#divHref").html("Href:" + location.href);
+        $("#divPortocol").html("Portocol:" + location.protocol);
+        $("#divHost").html("Host:" + location.host);
+        $("#divPort").html("Port:" + location.port);
+        $("#btnReload").click(function () {
+            location.reload(false);
+        });
+        $("#btnCache").click(function () {
+            window.open(location.href);
+        })
+        $("#divNavigatorName").html("appName:" + navigator.appName);
+        $("#divNavigatorVersion").html("appVersion:" + navigator.appVersion);
+        $("#divNavigatorCookie").html("isCookie:" + navigator.cookieEnabled);
+        $("#divNavigatorCookie").html("platForm:" + navigator.platform);
+        $("#divScreenWidth").html("ScreenWidth:" + screen.width + " ScreenHeight:" + screen.height +
+            " ScreenAvliableWidth:" +
+            screen.availWidth + " ScreenAviableHeight:" + screen.availHeight);
+        $("#divUserAgent").html("UserAgent:" + navigator.userAgent);
+
+        $("#btnInitScroll").click(function () {
+            $("#divScroll").html($("#divScroll").html() + " InitScrollWidth:" + $("#txtRemark").height());
+//            $("#divScroll").html($("#divScroll").html() + " InitClientWidth:" + $("#txtRemark").clientWidth);
+//            $("#divScroll").html($("#divScroll").html() + " OffsentWidth:" + $("#txtRemark").offsetWidth);
+//
+//            $("#divScroll").html($("#divScroll").html() + " InitScrollHeight:" +$("#txtRemark").scrollHeight);
+//            $("#divScroll").html($("#divScroll").html() + " InitClientHeight:" + $("#txtRemark").clientHeight);
+//            $("#divScroll").html($("#divScroll").html() + " OffsentHeight:" + $("#txtRemark").offsetHeight);
+        });
+
+        $("#btnAfterScroll").click(function () {
+//            $("#divScroll").html($("#divScroll").html() + " AfterScrollWidth:" + $("#txtRemark").height());
+//            $("#divScroll").html($("#divScroll").html() + " AfterClientWidth:" + $("#txtRemark").clientWidth);
+//            $("#divScroll").html($("#divScroll").html() + " AfterOffsentWidth:" + $("#txtRemark").offsetWidth);
+//
+//            $("#divScroll").html($("#divScroll").html() + " AfterScrollHeight:" +$("#txtRemark").scrollHeight);
+//            $("#divScroll").html($("#divScroll").html() + " AfterClientHeight:" + $("#txtRemark").clientHeight);
+//            $("#divScroll").html($("#divScroll").html() + " AfterOffsentHeight:" +$("#txtRemark").offsetHeight);
+        })
+    });
+</script>
+</body>
+</html>

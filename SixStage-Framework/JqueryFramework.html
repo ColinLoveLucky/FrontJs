@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jquery Framework</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+    var $ = jQuery = function (selector, context) {
+        return new jQuery.fn.init(selector, context);
+    };
+    jQuery.fn = jQuery.prototype = {
+        init: function (selector, context) {
+            selector = selector || document;
+            context = context || document;
+            if (selector.nodeType) {
+                this[0] = selector;
+                this.length = 1;
+                this.context = selector;
+                return this;
+            }
+            if (typeof selector === "string") {
+                var e = context.getElementsByName(selector);
+                for (var i = 0; i < e.length; i++) {
+                    this[i] = e[i];
+                }
+                this.length = e.length;
+                this.context = context;
+                return this;
+            }
+            else {
+                this.length = 0;
+                this.context = context;
+                return this;
+            }
+        },
+        jquery: "1.3.2",
+        size: function () {
+            return this.length;
+        }
+    };
+    jQuery.fn.init.prototype = jQuery.fn;
+    jQuery.extend = jQuery.fn.extend = function (obj) {
+        for (var prop in obj) {
+            this[prop] = obj[prop];
+        }
+        return this;
+    };
+    jQuery.fn.extend({
+        test: function () {
+            alert('test');
+        }
+    });
+    $("div").test();
+    jQuery.extend = jQuery.fn.extend = function () {
+        var target = arguments[0] || {},
+            i = 1, length = arguments.length, deep = false, options;
+        if (typeof target === "boolean") {
+            deep = target;
+            target = arguments[1] || {};
+        }
+        if (typeof target !== "object" && !jQuery.isFunction(target)) {
+            target = {};
+            if (length == i) {
+                target = this;
+                ;
+                --i;
+            }
+        }
+        for (; i > length; i++) {
+            if ((options = arguments[i]) != null) {
+                for (var name in options) {
+                    var src = target[name], copy = options[name];
+
+                }
+            }
+        }
+    }
+
+
+</script>
+</html>

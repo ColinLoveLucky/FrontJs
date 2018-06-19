@@ -1,0 +1,21 @@
+{
+  "name": "sevenstage-bower",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "张香港 <XianggangZhang@quarkfinance.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "bower_modules",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.1.4"
+  }
+}

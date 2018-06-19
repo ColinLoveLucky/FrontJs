@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>
+<div>
+    <input type="button" value="sequenceSearch" id="btnSequenceSearch"/>
+    <input type="button" value="BiSearch" id="btnBiSearch"/>
+    <input type="button" value="InsertSearch" id="btnInsertSearch">
+    <input type="button" value="FabSearch" id="btnFabSearch">
+    <input type="button" value="TwoTreeSearch" id="btnTwoTreeSearch">
+    <input type="button" value="SeperateSearch" id="btnSeperateSearch"/>
+    <input type="button" value="HashSearch" id="btnHashSearch"/>
+</div>
+<div id="divOriginal" style="float: left; width: 50%;color:rosybrown"></div>
+<div id="divSearch" style="float: left; width: 40%; color: orangered"></div>
+<script type="text/javascript" src="Js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var sequenceArray = [100, 98, 0, 29, 18, 28, 38, 22, 34, 333, 11, 2, 3, 4, 5, 6, 7, 8, 3];
+        var biArray = [1, 2, 3, 4, 5, 6, 7, 8, 9.10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
+        var insertArray = [1, 2, 3, 4, 5, 6, 7, 8, 9.10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
+        var fabArray = [1, 2, 3, 4, 5, 6, 7, 8, 9.10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
+        var seperateArray = [146, 219, 254, 315, 336, 358, 795, 876, 951, 999, 12, 25, 33, 36, 57]
+        var twoTreeArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        $("#btnSequenceSearch").click(function () {
+            $("#divOriginal").html("顺序查找之前的数组: " + sequenceArray.join(',') + " 查找的数据为:8");
+
+            function sequenceSearch(arr, value) {
+                var index = -1;
+                for (var i = 0; i < arr.length; i++) {
+                    if (arr[i] == value) {
+                        index = i;
+                    }
+                }
+                return index;
+            }
+
+            var index = sequenceSearch(sequenceArray, 8);
+            if (index != -1)
+                $("#divSearch").html("顺序查找之后的数据 索引为" + index + " 数值为: " + sequenceArray[index]);
+            else
+                $("#divSearch").html("没有顺序查找到内容");
+        });
+        $("#btnBiSearch").click(function () {
+            $("#divOriginal").html("二分法查找之前的数组: " + biArray.join(',') + " 查找的数据为:23");
+
+            function biSearch(arr, data) {
+                var high = arr.length - 1, low = 0, mid = 0;
+                while (low <= high) {
+                    mid = Math.floor((low + high) / 2);
+                    if (arr[mid] == data)
+                        return mid;
+                    if (arr[mid] > data)
+                        high = mid - 1;
+                    if (arr[mid] < data)
+                        low = mid + 1;
+                }
+                return -1;
+            };
+
+            function biSearch2(arr, data, low, high) {
+                var mid = low + Math.floor((high - low) / 2);
+                if (low > high)
+                    return -1;
+                else if (arr[mid] == data)
+                    return mid;
+                else if (arr[mid] > data)
+                    return biSearch2(arr, data, low, mid - 1);
+                else if (arr[mid] < data) {
+                    return biSearch2(arr, data, mid + 1, high);
+                }
+            };
+            var index = biSearch2(biArray, 23, 0, biArray.length - 1);
+            if (index != -1)
+                $("#divSearch").html("二分法查找之后的数据 索引为" + index + " 数值为: " + biArray[index]);
+            else
+                $("#divSearch").html("没有顺序查找到内容");
+        });
+        $("#btnInsertSearch").click(function () {
+            $("#divOriginal").html("插入查找之前的数组: " + insertArray.join(',') + " 查找的数据为:8");
+
+            function insertSearch(arr, element) {
+                //初始化起止端口号
+                var from = 0;
+                var to = arr.length - 1;
+                //循环扫描
+                while (from <= to) {
+                    //采用插值算法得到中间元素的位置
+                    var
+                        mid = Math.floor(from + (to - from) * (element - arr[from]) / (arr[to] - arr[from]));
+                    //进行判断是否找到该元素
+                    if (arr[mid] > element) {
+                        to = mid - 1;
+                    }
+                    else if (arr[mid] < element) {
+                        from = mid + 1;
+                    }
+                    else {
+                        //找到该元素，返回
+                        return mid;
+                    }
+                }
+                //未能查找到该元素
+                return -1;
+            }
+
+            var index = insertSearch(insertArray, 8);
+            if (index != -1)
+                $("#divSearch").html("插入查找之后的数据 索引为" + index + " 数值为: " + insertArray[index]);
+            else
+                $("#divSearch").html("没有顺序查找到内容");
+        });
+        $("#btnFabSearch").click(function () {
+            $("#divOriginal").html("斐波那查找之前的数组: " + fabArray.join(',') + " 查找的数据为:19");
+
+            function F(n) {
+                if (n <= 0)
+                    return 0;
+                else if (n == 1 || n == 2)
+                    return 1;
+                else
+                    return F(n - 1) + F(n - 2);
+            }
+
+            function fibonacci_search(arr, key) {
+                var low = 0, high = arr.length - 1;
+                var mid = 0;
+                var k = 0, n = arr.length;
+                while (n > F(k) - 1) //计算出n在斐波那契中的数列
+                    ++k;
+                for (var i = n; i < F(k) - 1; ++i) //把数组补全
+                    arr[i] = arr[high];
+                while (low <= high) {
+                    mid = low + F(k - 1) - 1;  //根据斐波那契数列进行黄金分割
+                    if (arr[mid] > key) {
+                        high = mid - 1;
+                        k = k - 1;
+                    }
+                    else if (arr[mid] < key) {
+                        low = mid + 1;
+                        k = k - 2;
+                    }
+                    else {
+                        if (mid <= high) //如果为真则找到相应的位置
+                            return mid;
+                        else
+                            return -1;
+                    }
+                }
+                return -1;
+            }
+
+            var index = fibonacci_search(fabArray, 19);
+            if (index != -1)
+                $("#divSearch").html("斐波那查找之后的数据 索引为" + index + " 数值为: " + fabArray[index]);
+            else
+                $("#divSearch").html("没有顺序查找到内容");
+        });
+        $("#btnTwoTreeSearch").click(function () {
+            $("#divOriginal").html("二叉树那查找之前的数组: " + twoTreeArray.join(','));
+
+            var biResult = [];
+
+            function Node(data, left, right) {
+                this.data = data;
+                this.left = left;
+                this.right = right;
+                this.show = show;
+            }
+
+            function show() {
+                return this.data;
+            }
+
+            function BST() {
+                this.root = null;
+                this.insert = insert;
+            }
+
+            function insert(data) {
+                var node = new Node(data, null, null);
+                if (this.root == null) {
+                    this.root = node;
+                    biResult.push(node.show());
+                }
+                else {
+                    var current = this.root;
+                    var parent;
+                    while (current) {
+                        parent = current;
+                        if (data < current.data) {
+                            current = current.left;
+                            if (current == null) {
+                                parent.left = node;
+                                biResult.push(node.show());
+                                break;
+                            }
+                        }
+                        else {
+                            current = current.right;
+                            if (current == null) {
+                                parent.right = node;
+                                biResult.push(node.show());
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            var middleArray = []
+
+            function inMiddleOrder(node) {
+                if (!(node == null)) {
+                    inMiddleOrder(node.left);
+                    middleArray.push(node.show());
+                    inMiddleOrder(node.right);
+                }
+            }
+
+            var preArray = []
+
+            function preOrder(node) {
+                if (!(node == null)) {
+                    preArray.push(node.show());
+                    preOrder(node.left);
+                    preOrder(node.right);
+                }
+            }
+
+            var postArray = []
+
+            function postOrder(node) {
+                if (!(node == null)) {
+                    postOrder(node.left);
+                    postOrder(node.right);
+                    postArray.push(node.show());
+                }
+            }
+
+            function getMin(node) {
+                var current = node.root;
+                while (!(current.left == null))
+                    current = current.left;
+
+                return current.data;
+            }
+
+            function find(node, data) {
+                var current = node.root;
+                while (current != null) {
+                    if (current.data == data)
+                        return current.data;
+                    else if (data < current.data)
+                        current = current.left;
+                    else
+                        current = current.right;
+                }
+                return -1;
+            }
+
+            var nums = new BST();
+            nums.insert(23);
+            nums.insert(45);
+            nums.insert(16);
+            nums.insert(37);
+            nums.insert(3);
+            nums.insert(99);
+            nums.insert(22);
+            nums.insert(81);
+            inMiddleOrder(nums.root);
+            preOrder(nums.root);
+            postOrder(nums.root);
+            var minNums = getMin(nums);
+            var findValue = find(nums, 99);
+            $("#divSearch").html("中序结果:" + middleArray.join(",") + "<br/>" + "前序:" + preArray.join(",") +
+                "<br/>" + "后序:" + postArray.join(",") + "<br/>最小值:" + minNums +
+                "<br/>查找99:" + findValue + "<br/>查找78:" + find(nums, 78));
+        });
+        $("#btnSeperateSearch").click(function () {
+            var index = {
+                'key': '',
+                'start': 0,
+                'end': 0
+            }
+            var sep = seperateArray;
+            //先确定分区
+            //在建立索引
+            //再次比较
+        });
+        $("#btnHashSearch").click(function () {
+
+
+            function getHashCode(str) {
+                var s = str.split("");
+                var hash = 0;
+                var skip = Math.max(1, Math.floor(s.length / 8));
+                for (var i = 0; i < s.length; i += skip) {
+                    hash = s[i] + (31 * hash);
+                }
+                return hash;
+            }
+
+          //利用key Value的形式来查找
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 16px;
+  cursor: pointer;
+  transition: color .3s;
+}
+
+.trigger:hover {
+  color: #108ee9;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.link:visited {
+  text-decoration: none;
+}
+
+.link:active {
+  text-decoration: none;
+}
+
+.logo {
+  height: 32px;
+  background: #333;
+  border-radius: 6px;
+  margin: 16px;
+}
+.rightWarpper {
+  float:right;
+  padding-right: 18px;
+  margin-top:12px;
+}
+.bread {
+  height:64px;
+  line-height: 64px;
+  padding: 0 15px;
+  border-top:  1px solid #e8e8e8;
+  background-color: #fff;
+}

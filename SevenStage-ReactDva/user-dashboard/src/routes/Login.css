@@ -1,0 +1,11 @@
+.ant-form .login-form {
+  max-width: 300px;
+}
+
+.ant-form .login-form-forgot {
+  float: right;
+}
+.ant-form .login-form-button {
+  width: 100%;
+  color:red;
+}

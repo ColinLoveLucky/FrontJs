@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>位置测试</title>
+    <style type="text/css">
+        .container {
+            width: 200px;
+            height: 300px;
+            border: 10px solid #eeddff;
+            overflow: scroll;
+        }
+        .content {
+            width: 500px;
+            height: 600px;
+            border: 5px solid #44ddff;
+        }
+    </style>
+</head>
+<body>
+    <div id="divContainer" class="container" style="margin: 10px;">
+        <div id="divContent" class="content"></div>
+    </div>
+<div>
+    <div><input type="button" id="btnContainerWidth" value="btnContainerWidth">
+        <input type="button" id="btnContainerClient" value="btnContainerClient">
+        <input type="button" id="btnContainerOffset" value="btnContainerOffset">
+        <input type="button" id="btnContainerScroll" value="btnContainerScroll">
+        <input type="button" id="btnContainer" value="btnContainerScroll">
+        <input type="button" id="btnContainerClientTop" value="btnContainerClientTop">
+        <input type="button" id="btnContainerScrollTop" value="btnContainerScrollTop">
+        <input type="button" id="btnContainerOffsetTop" value="btnContainerOffsetTop">
+    </div>
+    <div>
+        <input type="button" id="btnWidth" value="btnWidth">
+        <input type="button" id="btnClient" value="btnClient">
+        <input type="button" id="btnOffset" value="btnOffset">
+        <input type="button" id="btnScroll" value="btnScroll">
+    </div>
+</div>
+<script type="text/javascript">
+    window.onload = function () {
+        var btnWidth = document.getElementById("btnWidth");
+        var btnClient = document.getElementById("btnClient");
+        var btnOffset = document.getElementById("btnOffset");
+        var btnScroll = document.getElementById("btnScroll");
+        var divContent = document.getElementById("divContent");
+        btnWidth.onclick = function () {
+            alert("Div Content Width:" + divContent.style.width);
+        }
+        btnClient.onclick = function () {
+            alert("Div Content Client Width" + divContent.clientWidth + " div Client Height:" + divContent.clientHeight);
+        }
+        btnOffset.onclick = function () {
+            alert("Div Content Offset Width" + divContent.offsetWidth + " div Offset Height:" + divContent.offsetHeight);
+        }
+        btnScroll.onclick = function () {
+            alert("Div Content Scroll Width" + divContent.scrollWidth + " div Scroll Height:" + divContent.scrollHeight);
+        }
+        var btnContainerWidth = document.getElementById("btnContainerWidth");
+        var btnContainerClient = document.getElementById("btnContainerClient");
+        var btnContainerOffset = document.getElementById("btnContainerOffset");
+        var btnContainerScroll = document.getElementById("btnContainerScroll");
+        var btnContainerClientTop = document.getElementById("btnContainerClientTop");
+        var btnContainerScrollTop = document.getElementById("btnContainerScrollTop");
+        var btnContainerOffsetTop = document.getElementById("btnContainerOffsetTop");
+        var divContainer = document.getElementById("divContainer");
+        btnContainerWidth.onclick = function () {
+            alert("Div Container Width:" + divContainer.style.width);
+        }
+        btnContainerClient.onclick = function () {
+            alert("Div Container Client Width" + divContainer.clientWidth + " div Container Client Height:" + divContainer.clientHeight);
+        }
+        btnContainerOffset.onclick = function () {
+            alert("Div Container Offset Width" + divContainer.offsetWidth + " div Container Offset Height:" + divContainer.offsetHeight);
+        }
+        btnContainerScroll.onclick = function () {
+            alert("Div Container Scroll Width" + divContainer.scrollWidth + " div Container Scroll Height:" + divContainer.scrollHeight);
+        }
+        btnContainerClientTop.onclick = function () {
+            alert("Div Container ClientTop" + divContainer.clientTop + " div Container ClientLeft:" + divContainer.clientLeft);
+        }
+        btnContainerScrollTop.onclick = function () {
+            alert("Div Container ScrollTop" + divContainer.scrollTop + " div Container ScrollLeft:" + divContainer.scrollLeft);
+        }
+        btnContainerOffsetTop.onclick = function () {
+            alert("Div Container OffsetTop" + divContainer.offsetTop + " div Container OffsetLeft:" +
+                divContainer.offsetLeft);
+        }
+    }
+</script>
+</body>
+</html>

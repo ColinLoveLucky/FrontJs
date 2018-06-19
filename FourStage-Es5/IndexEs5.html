@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Es5</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="Js/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container" id="div1"></div>
+<div class="container" id="divMap"></div>
+<div class="container" id="divFilter"></div>
+<div class="container" id="divSome"></div>
+<div class="container" id="divEvery"></div>
+<div class="container" id="divIndex"></div>
+<div class="container" id="divLastIndex"></div>
+<div class="container" id="divReduce"></div>
+<div class="container" id="divReduceMatrix"></div>
+<script type="text/javascript">
+    $(function () {
+        var array = [1, 2, 3, 4];
+        var arrForEachContent = "";
+        array.forEach(function (t) {
+            arrForEachContent += t + ",";
+        });
+        $("#div1").html("<h1> Foreach:" + arrForEachContent + "</h1>");
+        var data = [1, 2, 3, 4, 5];
+        var mapData = data.map(function (t) {
+            return t * t;
+        });
+        $("#divMap").html("<h1>Map" + mapData.join(",") + "</h1>");
+        var dataFilter = [0, 1, 2, 3, 4, 5];
+        var arrayFilter = dataFilter.filter(function (t) {
+            if (t > 2)
+                return true;
+            else
+                return false;
+        });
+        $("#divFilter").html("<h1>Filter" + arrayFilter.join(",") + "</h1>");
+        var scores = [55, 89, 90, 91];
+        var value = scores.some(function (t) {
+            return t > 90;
+        });
+        $("#divSome").html(value ? "<h1>分数存在90分以上的!</h1>" : "全部都不达标");
+        var friends = [11, 22, 22, 22, 22];
+        if (friends.every(function (t) {
+                return t > 10;
+            })) {
+            $("#divEvery").html("<h1>朋友全部都合格!</h1>");
+        }
+        else
+            $("#divEvery").html("<h1>朋友全部都不合格!</h1>");
+        var arrayIndex = [1, 2, 3, 4, 5, 8];
+        $("#divIndex").html("<h1>Index:" + arrayIndex.indexOf(5, 2) + "</h1>");
+        $("#divLastIndex").html("<h1>Index:" + arrayIndex.lastIndexOf(5) + "</h1>");
+        var sum = [1, 2, 3, 4].reduce(function (p1, current) {
+            return p1 + current;
+        });
+        $("#divReduce").html("<h1>Reduce Value:" + sum + "</h1>");
+        var matrix=[
+            [1,2],
+            [3,4],
+            [5,6]
+        ];
+        var flatten=matrix.reduce(function (p1,current) {
+            return p1.concat(current);
+        })
+        $("#divReduceMatrix").html("<h1>ReduceMatrix:"+flatten.join(",")+"</h1>");
+    });
+</script>
+</body>
+</html>

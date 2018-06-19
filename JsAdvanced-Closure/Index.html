@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Closure</title>
+</head>
+<body>
+<input type="button" id="btnCLosure" value="Closure"/>
+<input type="button" id="btnCLosure2" value="Closure2"/>
+<input type="button" id="btnCLosure3" value="Closure3"/>
+<input type="button" id="btnClosure4" value="Closure4"/>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+</ul>
+<script type="text/javascript" src="Js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnCLosure").click(function () {
+            function f1() {
+                var n = 99;
+
+                function f2() {
+                    alert(n);
+                }
+
+                nAdd = function () {
+                    n += 1;
+                }
+
+                return f2;
+            }
+
+            var result = f1();//result 作为全局变量 没有释放 F2赋值给全局result F2 没有 释放 所以 f1没有释放
+            result();
+            nAdd();
+            result();
+        });
+        $("#btnCLosure2").click(function () {
+            var name = "The Window";
+            var object = {
+                name: "My Object",
+                getNameFunc: function () {
+                    return function () {
+                        return this.name;
+                    };
+                }
+            };
+            alert(object.getNameFunc()());
+        });
+        $("#btnCLosure3").click(function () {
+            var name = "The Window";
+            var object = {
+                name: "My Object",
+                getNameFunc: function () {
+                    var that = this;
+                    return function () {
+                        return that.name;
+                    };
+                }
+            };
+            alert(object.getNameFunc()());
+        });
+        for (var i = 0, len = $("li").length; i < len; i++) {
+            (function (n) {
+                $("li").eq(n).click(function () {
+                    alert(n);
+                })
+            })(i);
+        }
+        ;
+        var add = (function () {
+            var counter = 0;
+            return function () {
+                return counter++;
+            };
+        })();
+        $("#btnClosure4").click(function () {
+            alert(add());
+        })
+    });
+</script>
+</body>
+</html>

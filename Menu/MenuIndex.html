@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <style type="text/css">
+        ul, li {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .sidebar {
+            width: 210px;
+            height: 335px;
+            margin: 50px auto;
+            border-radius: 5px;
+            font: 14px '新宋体';
+            color: #f4f4f4;
+        }
+
+        .title {
+            width: 100%;
+            line-height: 32px;
+            border-bottom: 1px solid #ccc;
+            background: #1ABC9C;
+            cursor: pointer;
+        }
+
+        .in-sidebar {
+            width: 100%;
+            display: none;
+        }
+
+        .in-sidebar > li {
+            height: 32px;
+            background: #34495E;
+            line-height: 32px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .in-sidebar li a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .arrow {
+            float: right;
+            display: inline-block;
+            margin-right: 5px;
+            margin-top: 10px;
+            width: 20px;
+            height: 19px;
+            line-height: 19px;
+            background: url(Imgs/vicon.png) no-repeat;
+            background-position: 0px -19px;
+        }
+
+        .arrow-up {
+            background-position: 0px 0px;
+        }
+    </style>
+</head>
+<body>
+<div class="sidebar">
+    <ul>
+        <li class="title">
+            <apan>一、HTML5基础教程</apan>
+            <span class="arrow"></span>
+            <ul class="in-sidebar">
+                <li><a target="_blank" href="http://www.jiuni.com.cn">HTML5基础教程1</a></li>
+                <li><a href="#">HTML5基础教程2</a></li>
+                <li><a href="#">HTML5基础教程3</a></li>
+                <li><a href="#">HTML5基础教程4</a></li>
+                <li><a href="#">HTML5基础教程5</a></li>
+            </ul>
+        </li>
+        <li class="title"><span>二、CSS3基础教程</span><span class="arrow"></span>
+            <ul class="in-sidebar">
+                <li><a href="#">CSS3基础教程1</a></li>
+                <li><a href="#">CSS3基础教程2</a></li>
+                <li><a href="#">CSS3基础教程3</a></li>
+                <li><a href="#">CSS3基础教程4</a></li>
+                <li><a href="#">CSS3基础教程5</a></li>
+            </ul>
+        </li>
+        <li class="title"><span>三、Javascript基础教程</span><span class="arrow"></span>
+            <ul class="in-sidebar">
+                <li><a href="#">Javascript基础教程1</a></li>
+                <li><a href="#">Javascript基础教程2</a></li>
+                <li><a href="#">Javascript基础教程3</a></li>
+                <li><a href="#">Javascript基础教程4</a></li>
+                <li><a href="#">Javascript基础教程5</a></li>
+            </ul>
+        </li>
+        <li class="title"><span>四、NodeJs基础教程</span><span class="arrow"></span>
+            <ul class="in-sidebar">
+                <li><a href="#">NodeJs基础教程1</a></li>
+                <li><a href="#">NodeJs基础教程2</a></li>
+                <li><a href="#">NodeJs基础教程3</a></li>
+                <li><a href="#">NodeJs基础教程4</a></li>
+                <li><a href="#">NodeJs基础教程5</a></li>
+            </ul>
+        </li>
+        <li class="title"><span>五、IOS基础教程</span><span class="arrow"></span>
+            <ul class="in-sidebar">
+                <li><a href="#">IOS基础教程1</a></li>
+                <li><a href="#">IOS基础教程2</a></li>
+                <li><a href="#">IOS基础教程3</a></li>
+                <li><a href="#">IOS基础教程4</a></li>
+                <li><a href="#">IOS基础教程5</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<script src="Js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var tmp = null;
+        $(".title").click(function () {
+            if (tmp != this)
+                $(tmp).children('ul').slideUp().end().children('.arrow').removeClass('arrow-up');
+            $(this).children('ul').slideToggle().end().children('.arrow').addClass('arrow-up');
+            if(tmp==this)
+                $(this).children(".arrow").removeClass("arrow-up");
+            tmp = this;
+        })
+    });
+</script>
+</body>
+</html>

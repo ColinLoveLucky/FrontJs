@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Velocity</title>
+    <script src="Js/jquery-3.2.1.min.js"></script>
+    <script src="Js/velocity.js"></script>
+</head>
+<body>
+<div class="element" style="width: 100px;height: 100px;background-color: red;"></div>
+<div class="rect1" style="width: 100px;height: 100px;background-color: red;"></div>
+<div class="rect2" style="width: 100px;height: 100px;background-color: red;"></div>
+<div class="rect3" style="width: 100px;height: 100px;background-color: red;"></div>
+<div class="rect4" style="width: 100px;height: 100px;background-color: red;"></div>
+<div class="rect5" style="width: 100px;height: 100px;background-color: red;"></div>
+<div class="rect6" id="test" style="width: 100px;height: 100px;background-color: red;"></div>
+<div class="rect7" style="width: 100px;height: 100px;background-color: red;">7</div>
+<script type="text/javascript">
+    $(function () {
+        $(".element").velocity({
+            opacity: 0.5
+        }, {
+            duration: 1000
+        });
+        $(".rect1").velocity({
+            width: "500px"
+        }, {
+            duration: 400,
+            easing: "swing",
+            loop: true,
+            delay: 1000
+        })
+        $(".rect2").velocity({
+            p: {opacity: 0.5},
+            o: {duration: 500}
+        });
+        $(".rect3").velocity({width: 200}).velocity({
+            height: 200,
+            color: ["#888", "#000"]
+        }, {
+            duration: 1000,
+            opacity: 0.5,
+            delay: 1000,
+            loop: true
+        });
+        $(".rect4").velocity({
+            width: 200,
+            opacity: 0.5
+        }, {
+            duration: "slow",
+            easing: "easeInSine"
+        })
+        $(".rect5").velocity({
+            translateX: 75
+        }, {
+            queue: "a"
+        }).velocity({
+            width: 50
+        }, {
+            queue: "b"
+        }).velocity({
+            translateY: 75
+        }, {
+            queue: "a"
+        }).velocity({
+            height: 200
+        }, {
+            queue: "b"
+        });
+        setTimeout(function () {
+            $(".rect5").dequeue("a");
+        }, 2000);
+        setTimeout(function () {
+            $(".rect5").dequeue("b");
+        }, 2000);
+
+        $(".rect6").velocity({
+            opacity: 0
+        }, {
+            display: "none",
+            delay: 1000,
+            loop: 3,
+            begin: function (elements) {
+                alert($(elements).attr("id"));
+            },
+            complete: function (elements) {
+                alert("Hi");
+            }
+        });
+        $(".rect7").velocity("slideUp", {
+                duration: 1500
+            }
+        ).velocity("slideDown", {
+            delay: 500, duration: 1500
+        });
+    })
+</script>
+</body>
+</html>

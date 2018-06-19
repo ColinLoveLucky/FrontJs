@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ArtTemplate</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="Js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="Js/template-web.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<script id="tp1" type="text/html">
+    <h1>{{title}}</h1>
+    <ul class="list-group">
+        {{each list as value i}}
+        <li class="list-group-item">{{i+1}}:{{value}}</li>
+        {{/each}}
+    </ul>
+</script>
+<script type="text/html" id="tp3">
+    {{if isAdmin}}
+    <h1>{{title}}</h1>
+    <ul class="list-group">
+        {{each list as value i}}
+        <li class="list-group-item">{{i+1}}:{{value}}</li>
+        {{/each}}
+    </ul>
+    {{/if}}
+</script>
+<script type="text/html" id="tp4">
+    <p>转义:{{#text}}</p>
+    <p>不转义:{{text}}</p>
+</script>
+<script type="text/html" id="tp5">
+    {{include 'tp3'}}
+    <p>{{name}}</p>
+</script>
+<script type="text/html" id="tpHelpher">
+    {{xx(n)}}
+</script>
+<div id="divTp1" class="container"></div>
+<div id="divTp2" class="container"></div>
+<div id="divTp3" class="container"></div>
+<div id="divTp4" class="container"></div>
+<div id="divTp5" class="container"><</div>
+<div id="divTp6" class="container"><</div>
+<script type="text/javascript">
+    $(function () {
+        var data = {
+            title: "标签",
+            list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
+        };
+        var tp1 = template('tp1', data);
+        $("#divTp1").html(tp1);
+
+        var apply_list = '<ul class="list-group">{{each list as shop}} ' +
+            '<li class="list-group-item">' +
+            '<ul class="list-group">' +
+            '<li class="list-group-item">{{shop.shop_name}}</li>' +
+            '<li class="list-group-item">{{shop.shop_balance}}</li></ul>{{/each}}';
+
+        var tp2Data = {
+            list: [
+                {"id": 1, "shop_name": "123", "shop_balance": 5000},
+                {"id": 2, "shop_name": "12344", "shop_balance": 500}
+            ]
+        }
+        var render = template.compile(apply_list);
+        var htmlTp2 = render(tp2Data);
+        $("#divTp2").html(htmlTp2);
+
+        var dataTp3 = {
+            title: '基本例子',
+            isAdmin: true,
+            list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
+        };
+
+        var htmTp3 = template('tp3', dataTp3);
+        $("#divTp3").html(htmTp3);
+
+        var data_noEscape = {
+            text: '<span style="color:#F00">hello world!</span>'
+        };
+
+        var html_noescape = template('tp4', data_noEscape);
+        $("#divTp4").html(html_noescape);
+
+        var dataTp5 = {
+            title: '基本例子',
+            isAdmin: true,
+            list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他', "吹牛皮"],
+            name: "Hello World"
+        };
+
+        var htmlTp5 = template('tp5', dataTp5);
+        $("#divTp5").html(htmlTp5);
+
+        var dataHelpher = {
+            n: 123
+        };
+        template.defaults.imports.xx=function (a) {
+            return 10 + "--" + a;
+        };
+        var htmlHelpher = template("tpHelpher", dataHelpher);
+        $("#divTp6").html(htmlHelpher);
+    })
+</script>
+</body>
+</html>

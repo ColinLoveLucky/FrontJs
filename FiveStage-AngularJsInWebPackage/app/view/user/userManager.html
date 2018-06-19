@@ -1,0 +1,82 @@
+<form role="form" class="form-inline">
+    <div class="form-group">
+        <label class="sr-only" for="name">姓名</label>
+        <input type="text" class="form-control col-lg-3" ng-model="domain.NAME" id="name" placeholder="请输入名称">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="phone">手机号</label>
+        <input type="text" class="form-control col-lg-3" ng-model="domain.TELPHONE" id="phone" placeholder="请输入手机号">
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" ng-click="query()">查 询</button>
+        <button class="btn btn-default" ng-click="add()">新增</button>
+        <button class="btn btn-default" ng-click="modify()">修 改</button>
+        <button class="btn btn-danger" ng-click="remove()">删 除</button>
+    </div>
+</form>
+<div>
+    <form role="form" ng-show="isAdd" class="row" style="margin-top: 20px;">
+        <div class="form-group col-lg-6">
+            <label for="usrName">用户名</label>
+            <input type="text" class="form-control" id="usrName" ng-model="usrName" placeholder="请输入用户名">
+        </div>
+        <div class="form-group col-lg-6">
+            <label for="password">密码</label>
+            <input type="text" class="form-control" id="password" ng-model="password" placeholder="请输入密码">
+        </div>
+        <div class="form-group col-lg-6">
+            <label for="realName">真实姓名</label>
+            <input type="text" class="form-control" id="realName"  ng-model="realName"  placeholder="请输入真实姓名">
+        </div>
+        <div class="form-group col-lg-6">
+            <label for="eamil">邮箱</label>
+            <input type="text" class="form-control" id="eamil"  ng-model="email" placeholder="请输入邮箱">
+        </div>
+        <div class="form-group col-lg-6">
+            <label for="mobile">电话</label>
+            <input type="text" class="form-control" id="mobile"  ng-model="mobile" placeholder="请输入电话">
+        </div>
+        <div class="form-group col-lg-6">
+            <label for="role">角色</label>
+            <input type="text" class="form-control" id="role" ng-model="role" placeholder="请输入角色">
+        </div>
+        <div class="form-group">
+            <div class="col-lg-6">
+                <button type="submit" class="btn btn-default" ng-click="addSubmit()">提交</button>
+            </div>
+        </div>
+    </form>
+    <table class="table  table-bordered table-striped tableTop">
+        <thead>
+        <tr>
+            <th>名称</th>
+            <th>电话</th>
+            <th>城市</th>
+            <th>部门</th>
+            <th>状态</th>
+            <th>创建日期</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="user in Users">
+        <tr>
+            <td>{{user.name}}</td>
+            <td>{{user.telphone}}</td>
+            <td>{{user.city}}</td>
+            <td>{{user.departmentName}}</td>
+            <td>{{user.isActived}}</td>
+            <td>{{user.createdTime}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <ul class="pagination">
+            <li><a>&laquo;</a></li>
+            <li><a>1</a></li>
+            <li><a>2</a></li>
+            <li><a>3</a></li>
+            <li><a>4</a></li>
+            <li><a>5</a></li>
+            <li><a>&raquo;</a></li>
+        </ul>
+    </div>
+</div>

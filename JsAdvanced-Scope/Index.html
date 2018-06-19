@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scope</title>
+</head>
+<body>
+<input type="button" value="btnScope" id="btnScope"/>
+<input type="button" value="btnWithScope" id="btnWithScope"/>
+<script type="text/javascript" src="Js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        ///执行环境 执行Scope 活动对象
+        var name = "zhangsan";
+
+        function GetName() {
+            var name;
+            alert(name);
+            var name = "lisi";
+            alert(name);
+        }
+
+        $("#btnScope").click(function () {
+            GetName();
+        })
+        var person = {
+            "name": "zhangsan", "age": "12", "wife": {"name": "lisi", "age": "22"}
+        };
+        $("#btnWithScope").click(function () {
+            with (person.wife) {
+                alert(name);
+            }
+        })
+    })
+</script>
+</body>
+</html>

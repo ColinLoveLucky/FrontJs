@@ -1,0 +1,7 @@
+tr{ background: white;}
+tr:nth-child(2n){ background: #F0F8FF;}
+
+table tr:hover{background-color: #CAE1FF ;}
+.tableTop{
+    margin-top:10px;
+}

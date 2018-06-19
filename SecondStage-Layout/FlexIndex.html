@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .flex-container {
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 990px;
+        }
+
+        .flex-item {
+            padding: 5px;
+            width: 300px;
+            flex: auto;
+        }
+
+        .flex-item:last-child {
+            order: -1;
+        }
+
+        .post {
+            display: flex;
+            flex-flow: column wrap;
+        }
+
+        .post-meta {
+            display: flex;
+            flex-flow: row wrap;
+            order: 1;
+        }
+
+        .post-body {
+            order: 3;
+        }
+
+        .post-comments {
+            order: 4;
+        }
+
+        .comments-count {
+            margin-left: auto;
+        }
+
+        .post-image {
+            order: 2;
+            align-self: center;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <ul class="flex-container">
+        <li class="flex-item">1<img src="1.jpg"></li>
+        <li class="flex-item">2<img src="1.jpg"></li>
+        <li class="flex-item">3<img src="1.jpg"></li>
+        <li class="flex-item">4<img src="1.jpg"></li>
+        <li class="flex-item">5<img src="1.jpg"></li>
+        <li class="flex-item">6<img src="1.jpg"></li>
+    </ul>
+</div>
+
+<div class="post">
+    <h1>This is my first blog post</h1>
+    <div class="post-meta">
+        <div class="author">Alex Cheng</div>
+        <div class="datetime">2014-07-02 10:10 am</div>
+        <div class="comments-count">2 comments</div>
+    </div>
+    <div class="post-body">
+        My first blog post.
+
+    </div>
+    <div class="post-image">
+        <img src="1.jpg">
+    </div>
+    <div class="post-comments">
+        <h3>Comments</h3>
+        <ul>
+
+            <li>
+                <div class="author">Bob</div>
+                <div>This is a good post.</div>
+            </li>
+            <li>
+                <div class="autho">David</div>
+                <div>Good post.</div>
+            </li>
+
+        </ul>
+    </div>
+</div>
+</body>
+</html>

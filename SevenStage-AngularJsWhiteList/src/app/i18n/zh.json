@@ -1,0 +1,9 @@
+{
+	"T_USERNAME":"用户",
+	"T_USERPWD":"密码",
+	"T_LOGIN":"登录",
+	"T_Register":"注册",
+	"T_Test":"test",
+	"T_UserManagement":"用户管理",
+	"T_Add":"新增"
+}

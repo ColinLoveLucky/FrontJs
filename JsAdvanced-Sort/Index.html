@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sort</title>
+</head>
+<body>
+<div>
+    <input type="button" id="btnBubbleSort" value="BubbleSort"/>
+    <input type="button" id="btnSelectionSort" value="SelectionSort"/>
+    <input type="button" id="btnInsertSort" value="InsertSort"/>
+    <input type="button" id="btnShellSort" value="ShellSort"/>
+    <input type="button" id="btnMergeSort" value="MergeSort"/>
+    <input type="button" id="btnQuickSort" value="QuickSort"/>
+    <input type="button" id="btnHeapSort" value="HeapSort"/>
+    <input type="button" id="btnCountingSort" value="CountSort"/>
+    <input type="button" id="btnBucketSort" value="BucketSort"/>
+    <input type="button" id="btnRadixSort" value="RadixSort"/>
+</div>
+<div id="divBeforeSort" style="float: left; width: 50%;color:rosybrown"></div>
+<div id="divAfterSort" style="float: left; width: 40%; color: orangered"></div>
+<div id="divCount" style="float: left; width: 10%; color: orangered"></div>
+<script type="text/javascript" src="Js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var bubbleSort = [6, 5, 10, 9, 8, 1, 2, 3, 4];
+        var selectionSort = [6, 5, 10, 9, 8, 1, 2, 3, 4];
+        var insertSort = [6, 5, 10, 9, 8, 1, 2, 3, 4];
+        var shellSort = [8, 9, 1, 7, 2, 3, 5, 4, 6, 0, 11];
+        var mergeArray = [9, 10, 8, 1, 5, 19, 35, 2, 3, 4, 7];
+        var quickArray = [9, 10, 8, 1, 5, 35, 11, 19, 2, 3, 4, 7];
+        var heapArray = [9, 10, 8, 1, 5, 19, 35, 2, 3, 4, 7];
+        var countArray = [9, 10, 8, 1, 5, 19, 35, 2, 3, 4, 7, 2, 3];
+        var buckArray = [9, 10, 8, 1, 5, 19, 35, 2, 3, 4, 7, 2, 3];
+        var radixArray = [9, 10, 109, 8, 1, 5, 19, 35, 2, 3, 4, 7];
+        var count = 0;
+        $("#btnBubbleSort").click(function () {
+            var flag = true;
+            $("#divBeforeSort").html("冒泡排序之前的数组: " + bubbleSort.join(','));
+            var temp = 0;
+            var newArray = [];
+            for (var item in bubbleSort) {
+                newArray.push(bubbleSort[item]);
+            }
+            for (var i = 0; i < newArray.length; i++) {
+                if (flag && i > 0) {
+                    break;
+                }
+                else {
+                    for (var j = 0, len = newArray.length; j < len - 1 - i; j++) {
+                        if (newArray[j] > newArray[j + 1]) {
+                            count++;
+                            temp = newArray[j];
+                            newArray[j] = newArray[j + 1];
+                            newArray[j + 1] = temp;
+                            flag = false;
+                        }
+                        else {
+                            if (i == 0) {
+                                count++;
+                            }
+                        }
+                    }
+                }
+            }
+
+            $("#divAfterSort").html("冒泡排序之后的数据: " + newArray.join(','));
+            $("#divCount").html("对比的次数: " + count);
+        });
+        $("#btnSelectionSort").click(function () {
+            $("#divBeforeSort").html("选择排序之前的数组: " + selectionSort.join(','));
+            var newArray = [];
+            for (var item in selectionSort) {
+                newArray.push(selectionSort[item]);
+            }
+            var minIndex = 0;
+            var temp = 0;
+            for (var i = 0; i < newArray.length - 1; i++) {
+                minIndex = i;
+                for (var j = i + 1; j < newArray.length; j++) {
+                    if (newArray[minIndex] > newArray[j]) {
+                        minIndex = j;
+                    }
+                }
+                if (minIndex != i) {
+                    temp = newArray[i];
+                    newArray[i] = newArray[minIndex];
+                    newArray[minIndex] = temp;
+                }
+            }
+            $("#divAfterSort").html("选择排序之后的数据: " + newArray.join(','));
+        });
+        $("#btnInsertSort").click(function () {
+            //优化方案折半插入
+            $("#divBeforeSort").html("插入排序之前的数组: " + insertSort.join(','));
+            var newArray = [];
+            for (var item in insertSort) {
+                newArray.push(insertSort[item]);
+            }
+            var temp = 0;
+            for (var i = 1, len = newArray.length; i < len; i++) {
+                if (newArray[i - 1] > newArray[i]) {
+                    temp = newArray[i];
+                    var j = i;
+                    while (j > 0 & newArray[j - 1] > temp) {
+                        newArray[j] = newArray[j - 1];
+                        j--;
+                    }
+                    newArray[j] = temp;
+                }
+            }
+            $("#divAfterSort").html("选择排序之后的数据: " + newArray.join(','));
+        });
+        $("#btnShellSort").click(function () {
+            $("#divBeforeSort").html("希尔排序之前的数组: " + shellSort.join(','));
+            var newArray = [];
+            for (var item in shellSort) {
+                newArray.push(shellSort[item]);
+            }
+            var temp = 0;
+            for (var gap = parseInt(newArray.length / 2); gap > 0; gap = parseInt(gap / 2)) {
+                for (var i = 0; i < gap; i++) {
+                    for (var j = i + gap; j < newArray.length; j += gap) {
+                        if (newArray[j] < newArray[j - gap]) {
+                            temp = newArray[j];
+                            var k = j - gap;
+                            while (k >= 0 && newArray[k] > temp) {
+                                newArray[k + gap] = newArray[k];
+                                k -= gap;
+                            }
+                            newArray[k + gap] = temp;
+                        }
+                    }
+                }
+            }
+            ///优化代码的方案
+//            for(var gap=parseInt(newArray.length/2);gap>0;gap=parseInt((gap/2)))
+//            {
+//                for(var i=gap;i<newArray.length;i++)
+//                {
+//
+//                }
+//            }
+            $("#divAfterSort").html("希尔排序之后的数据: " + newArray.join(','));
+        });
+        $("#btnMergeSort").click(function () {
+            $("#divBeforeSort").html("归并排序之前的数组: " + mergeArray.join(','));
+            var newArray = [];
+            for (var item in mergeArray) {
+                newArray.push(mergeArray[item]);
+
+            }
+
+            function mergeSort(arr) {
+                if (arr.length < 2)
+                    return arr;
+                var middle = Math.floor(arr.length / 2),
+                    left = arr.slice(0, middle),
+                    right = arr.slice(middle);
+                return merge(mergeSort(left), mergeSort(right));
+            }
+
+            function merge(left, right) {
+                var result = [];
+                while (left.length > 0 && right.length > 0) {
+                    if (left[0] <= right[0])
+                        result.push(left.shift());
+                    else
+                        result.push(right.shift());
+                }
+                while (left.length) {
+                    result.push(left.shift());
+                }
+                while (right.length) {
+                    result.push(right.shift());
+                }
+                return result;
+            }
+
+            var result = mergeSort(newArray);
+            $("#divAfterSort").html("归并排序之后的数据: " + result.join(','));
+        });
+        $("#btnQuickSort").click(function () {
+            $("#divBeforeSort").html("快速排序之前的数组: " + quickArray.join(','));
+            var newArray = [];
+            for (var item in quickArray) {
+                newArray.push(quickArray[item]);
+            }
+
+            function quickSort(arr, left, right) {
+                var len = arr.length,
+                    partitionIndex = 0,
+                    left = typeof left != 'number' ? 0 : left,
+                    right = typeof right != 'number' ? len - 1 : right;
+                if (left < right) {
+                    partitionIndex = partition(arr, left, right);
+                    quickSort(arr, left, partitionIndex);
+                    quickSort(arr, partitionIndex + 1, right);
+                }
+                return arr;
+            }
+
+            function partition(arr, left, right) {
+                var pivot = left,
+                    index = pivot + 1;
+                for (var i = index; i <= right; i++) {
+                    if (arr[i] < arr[pivot]) {
+                        swap(arr, i, index);
+                        index++;
+                    }
+                }
+                swap(arr, pivot, index - 1);
+                return index - 1;
+            }
+
+            function swap(arr, i, j) {
+                var temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+
+            quickSort(newArray, 0, newArray.length);
+            $("#divAfterSort").html("快速排序之后的数据: " + newArray.join(','));
+        });
+        $("#btnHeapSort").click(function () {
+            $("#divBeforeSort").html("堆排序之前的数组: " + heapArray.join(','));
+            var newArray = [];
+            for (var item in heapArray) {
+                newArray.push(heapArray[item]);
+            }
+
+            function heapSort(arr) {
+                buildMaxHeap(arr);//转换为堆
+                alert(arr.join(','));
+                //进行堆排序
+                for (var i = arr.length - 1; i > 0; i--) {
+                    swap(arr, 0, i);
+                    headAdjust(arr, 0, i);
+                }
+            }
+
+            function buildMaxHeap(arr) {
+                for (var i = Math.floor(arr.length / 2) - 1; i >= 0; i--) {
+                    headAdjust(arr, i, arr.length);
+                }
+            }
+
+            function headAdjust(arr, index, len) {
+                var largest = index,
+                    left = 2 * index + 1,
+                    right = 2 * index + 2;
+                if (left < len && arr[largest] < arr[left])
+                    largest = left;
+                if (right < len && arr[largest] < arr[right])
+                    largest = right;
+                if (largest != index) {
+                    swap(arr, index, largest);
+                    headAdjust(arr, largest, len);
+                }
+            }
+
+            function swap(arr, i, j) {
+                var tmp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = tmp;
+            }
+
+            heapSort(newArray);
+            $("#divAfterSort").html("堆排序之后的数据: " + newArray.join(','));
+        });
+        $("#btnCountingSort").click(function () {
+            $("#divBeforeSort").html("计数排序之前的数组: " + countArray.join(','));
+            var newArray = [];
+            for (var item in countArray) {
+                newArray.push(countArray[item]);
+            }
+
+            function countingSort(arr, maxValue) {
+                var bucket = new Array(maxValue + 1),
+                    sortIndex = 0,
+                    bucketLen = maxValue + 1;
+                for (var i = 0; i < arr.length; i++) {
+                    if (!bucket[arr[i]])
+                        bucket[arr[i]] = 0;
+                    bucket[arr[i]]++;
+                }
+                for (var j = 0; j < bucketLen; j++) {
+                    while (bucket[j] > 0) {
+                        arr[sortIndex++] = j;
+                        bucket[j]--;
+                    }
+                }
+                return arr;
+            }
+
+            $("#divAfterSort").html("计数排序之后的数据: " + countingSort(newArray, 35).join(','));
+        });
+        $("#btnBucketSort").click(function () {
+            $("#divBeforeSort").html("桶排序之前的数组: " + buckArray.join(','));
+            var newArray = [];
+            for (var item in buckArray) {
+                newArray.push(buckArray[item]);
+            }
+
+            function buddleSort(arr) {
+                var temp = 0;
+                for (var i = 0; i < arr.length; i++) {
+                    for (var j = 0, len = arr.length; j < len - 1 - i; j++) {
+                        if (arr[j] > arr[j + 1]) {
+                            temp = arr[j];
+                            arr[j] = arr[j + 1];
+                            arr[j + 1] = temp;
+                        }
+                    }
+                }
+            }
+
+            function buckSort(arr, bucketSize) {
+                if (arr.length == 0)
+                    return arr;
+                var minValue = arr[0];
+                var maxValue = arr[0];
+                for (var i = 1; i < arr.length; i++) {
+                    if (arr[i] < minValue)
+                        minValue = arr[i];
+                    else if (arr[i] > maxValue)
+                        maxValue = arr[i];
+                }
+                var default_bucket_size = 5,
+                    bucketSize = bucketSize || default_bucket_size;
+                var buckCount = Math.floor((maxValue - minValue) / bucketSize) + 1;
+                var buckets = new Array(buckCount);
+                for (i = 0; i < buckets.length; i++)
+                    buckets[i] = [];
+                for (var i = 0; i < arr.length; i++) {
+                    buckets[Math.floor((arr[i] - minValue) / bucketSize)].push(arr[i]);
+                }
+                arr.length = 0;
+                for (i = 0; i < buckets.length; i++) {
+                    //排序桶内
+                    buddleSort(buckets[i]);
+                    for (var j = 0; j < buckets[i].length; j++) {
+                        arr.push(buckets[i][j]);
+                    }
+                }
+                return arr;
+            }
+
+            $("#divAfterSort").html("桶排序之后的数据: " + buckSort(newArray).join(','));
+        });
+        $("#btnRadixSort").click(function () {
+            $("#divBeforeSort").html("基数排序之前的数组: " + radixArray.join(','));
+            var newArray = [];
+            for (var item in radixArray) {
+                newArray.push(radixArray[item]);
+            }
+
+            var counter = [];
+
+            function radixSort(arr, maxDigit) {
+                var mod = 10, dev = 1;
+                for (var i = 0; i < maxDigit; i++, mod *= 10, dev *= 10) {
+                    for (var j = 0; j < arr.length; j++) {
+                        var bucker = parseInt((arr[j] % mod) / dev);
+                        if (counter[bucker] == null)
+                            counter[bucker] = [];
+                        counter[bucker].push(arr[j]);
+                    }
+                    var pos = 0;
+                    for (var j = 0; j < counter.length; j++) {
+                        var value = null;
+                        if (counter[j] != null)
+                            while ((value = counter[j].shift()) != null)
+                                arr[pos++] = value;
+                    }
+                }
+                return arr;
+            }
+
+            $("#divAfterSort").html("基数序之后的数据: " + radixSort(newArray, 3).join(','));
+        })
+    })
+</script>
+</body>
+</html>

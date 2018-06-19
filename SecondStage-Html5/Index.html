@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>html5</title>
+    <style type="text/css">
+        header, section, footer, aside, nav, main, article, figure {
+            display: block;
+        }
+
+        #div1 {
+            width: 350px;
+            height: 70px;
+            padding: 10px;
+            border: 1px solid #aaaaaa;
+        }
+    </style>
+    <!--if lt IE 9]>　　<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>　　<![endif]-->
+</head>
+<body>
+<div>
+    <div>HTML5 定了 8 个新的 HTML 语义（semantic） 元素。所有这些元素都是 块级 元素。
+        <br/> header, section, footer, aside, nav, main, article, figure
+    </div>
+    <div>
+        新的语义结构块
+        <br/>article、aside、bdi、command、details、dialog、summary、figure、figcaption、footer
+        | header|mark|meter|nav|progress|ruby|rt|rp|section|timewbr
+    </div>
+    <div>Html5新的元素</div>
+
+    <div>新的媒体元素
+        <br/> audio、video、source、embed、track
+    </div>
+    <div>新表单元素
+        <br/>datalist 、keygen、output
+    </div>
+    <canvas id="myCanvas" width="200" height="100" style="border: 1px solid #c3c3c3">你的浏览器不支持canvas</canvas>
+    <canvas id="line"></canvas>
+    <canvas id="arc"></canvas>
+    <canvas id="text"></canvas>
+    <canvas id="change"></canvas>
+    <img id="scream" style="display: none;" src="1.png" alt="The Scream" width="220" height="277">
+    <p>Canvas:</p>
+    <canvas id="imge"></canvas>
+
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+
+        <mrow>
+            <msup>
+                <mi>a</mi>
+                <mn>2</mn>
+            </msup>
+            <mo>+</mo>
+
+            <msup>
+                <mi>b</mi>
+                <mn>2</mn>
+            </msup>
+            <mo>=</mo>
+
+            <msup>
+                <mi>c</mi>
+                <mn>2</mn>
+            </msup>
+        </mrow>
+
+    </math>
+
+</div>
+
+<div>
+
+    <p>拖动 RUNOOB.COM 图片到矩形框中:</p>
+
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <br>
+    <img id="drag1" src="logo.png" draggable="true" ondragstart="drag(event)" width="336" height="69">
+</div>
+
+<video width="320" height="240" controls>
+    <source src="movie.mp4" type="video/mp4">
+    <source src="movie.ogg" type="video/ogg">
+    您的浏览器不支持 HTML5 video 标签。
+</video>
+​
+<div style="text-align:center">
+    <button onclick="playPause()">播放/暂停</button>
+    <button onclick="makeBig()">放大</button>
+    <button onclick="makeSmall()">缩小</button>
+    <button onclick="makeNormal()">普通</button>
+    <br>
+    <video id="video1" width="420">
+        <source src="movie.mp4" type="video/mp4">
+        <source src="movie.ogg" type="video/ogg">
+        您的浏览器不支持 HTML5 video 标签。
+    </video>
+</div>
+<audio controls>
+    <source src="horse.ogg" type="audio/ogg">
+    <source src="horse.mp3" type="audio/mpeg">
+    您的浏览器不支持 audio 元素。
+</audio>
+<div>
+    <input type="color" name="favcolor">
+    生日: <input type="date" name="2">
+    生日: <input type="week" name="3">
+    生日: <input type="month" name="4">
+    生日: <input type="time" name="5">
+    生日: <input type="datetime" name="5">
+    生日 (日期和时间): <input type="datetime" name="6">
+    <br/>
+    <form action="#">
+        数量 ( 1 到 5 之间): <input type="number" name="quantity" min="1" max="5">
+
+        <input type="range" name="points" min="1" max="10">
+
+        Search Google: <input type="search" name="googlesearch">
+
+        添加您的主页: <input type="url" name="homepage">
+
+        <input list="browsers">
+
+        <datalist id="browsers">
+            <option value="Internet Explorer">
+            <option value="Firefox">
+            <option value="Chrome">
+            <option value="Opera">
+            <option value="Safari">
+        </datalist>
+        <input type="submit">
+
+        Select images: <input type="file" name="img" multiple>
+
+        <section>
+            <h1>WWF</h1>
+            <p>The World Wide Fund for Nature (WWF) is....</p>
+        </section>
+
+        <nav>
+            <a href="/html/">HTML</a> |
+            <a href="/css/">CSS</a> |
+            <a href="/js/">JavaScript</a> |
+            <a href="/jquery/">jQuery</a>
+        </nav>
+        <div id="result"></div>
+    </form>
+
+</div>
+<script>
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.fillStyle = "#FF0000";
+    ctx.fillRect(0, 0, 150, 75);
+    var lin2 = document.getElementById("line");
+    var ctx2 = lin2.getContext("2d");
+    ctx2.moveTo(0, 0);
+    ctx2.lineTo(200, 100);
+    ctx2.stroke();
+    var rcx = document.getElementById("arc");
+    var ctx3 = rcx.getContext("2d");
+    ctx3.beginPath();
+    ctx3.arc(95, 50, 40, 0, 2 * Math.PI);
+    ctx3.stroke();
+    var txt = document.getElementById("text");
+    var ctx4 = rcx.getContext("2d");
+    ctx4.font = "30px Arial";
+    ctx4.fillText("Hello World", 10, 50);
+    ctx4.strokeText("Hello World", 10, 100);
+    var txt = document.getElementById("change");
+    var ctx5 = rcx.getContext("2d");
+    var grd = ctx5.createLinearGradient(0, 0, 200, 0);
+    grd.addColorStop(0, "red");
+    grd.addColorStop(1, "white");
+    ctx5.fillStyle = grd;
+    ctx.fillRect(70, 70, 200, 80);
+    var imgsCarv = document.getElementById("imge");
+    var ctx6 = imgsCarv.getContext("2d");
+    var img = document.getElementById("scream");
+    img.onload = function () {
+        ctx6.top = 300;
+        ctx6.drawImage(img, 200, 10);
+    }
+</script>
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("Text", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("Text");
+        ev.target.appendChild(document.getElementById(data));
+    }
+</script>
+<script>
+    var myVideo = document.getElementById("video1");
+
+    function playPause() {
+        if (myVideo.paused)
+            myVideo.play();
+        else
+            myVideo.pause();
+    }
+
+    function makeBig() {
+        myVideo.width = 560;
+    }
+
+    function makeSmall() {
+        myVideo.width = 320;
+    }
+
+    function makeNormal() {
+        myVideo.width = 420;
+    }
+</script>
+<SCRIPT>
+    localStorage.sitename = "菜鸟教程";
+    document.getElementById("result").innerHTML = "网站名：" + localStorage.sitename;
+
+    var i=0;
+
+    function timedCount()
+    {
+        i=i+1;
+        postMessage(i);
+        setTimeout("timedCount()",500);
+    }
+
+    timedCount();
+</SCRIPT>
+</body>
+</html>

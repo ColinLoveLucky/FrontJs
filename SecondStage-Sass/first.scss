@@ -1,0 +1,44 @@
+$blue: #1875e7;
+$backgroundColor: #2e2e2e;
+$side: left;
+div {
+  color: $blue;
+  width: 100px;
+  height: 100px;
+  background-color: $backgroundColor;
+  border-#{$side}-radius: 5px;
+}
+
+$var: 2;
+body {
+  div {
+    margin: (144px/2);
+    top: 50px+100px;
+    right: $var*10%;
+  }
+}
+
+a {
+  &:hover {
+    color: #ffb3ff;
+  }
+}
+
+.class1 {
+  border: 1px solid #ddd;
+}
+
+.class2 {
+  @extend .class1;
+  font-size: 120%;
+}
+
+@mixin  left($value:10px){
+  float:left;
+  margin-left: $value;
+}
+
+div{
+  @include left(20px);
+}
+

@@ -1,0 +1,32 @@
+<div class=" text-center animated fadeInDown" style=" max-width: 300px;
+    z-index: 100;
+    margin: 0 auto;
+    padding-top: 40px;">
+<!--<form class="form-horizontal" role="form" ng-submit="login()">-->
+    <div>
+    <select class="language-switching" ng-model="cur_lang" ng-change="switching(cur_lang)">
+        <option value="en">English</option>
+        <option value="zh">简体中文</option>
+    </select>
+    <div class="ht-300" style="height: 280px; padding-top: 145px;">
+        <img alt="image" class="white-border" src="https://sitqone.quarkfinance.com/resources/images/q-one.png">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" ng-model="viewModel.account" placeholder="{{ 'T_USERNAME' | translate }}">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" ng-model="viewModel.passWord" placeholder="{{ 'T_USERPWD' | translate }}">
+    </div>
+    <div class="form-group">
+        <button  ng-click="login()" class="btn btn-default">{{ 'T_LOGIN' | translate }}</button><!--type="submit"-->
+    </div>
+    <div class="form-group">
+        <a href="javascript:void(0)" ng-click="RegsiterUser()">{{ 'T_Register' | translate }}</a>
+    </div>
+<div>12</div>
+
+    <div menu-List></div>
+        <has-op menu-key="T_UserManagement" operator-key="T_Add">{{ 'T_Add' | translate}}</has-op>
+    </div>
+<!--</form>-->
+</div>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>鬼眼邪神的博客</title>
+    <meta name="author" content="鬼眼邪神"/>
+    <meta name="description" content="鬼眼邪神的博客，http://cyg7561.blog.163.com/"/>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+        }
+        body {
+            margin-left:30px;
+            border:5px solid #000;
+            background:yellow;
+            height:350px;
+        }
+        .d {
+            float:left;
+            position:relative;
+            margin:20px;
+            padding:20px;
+            width:200px;
+            height:200px;
+            border:20px solid #000;
+            background:red;
+            overflow:auto;
+        }
+        .con {
+            float:left;
+            width:400px;
+            height:80px;
+            margin-left:25px;
+            border:10px solid blue;
+            background:green;
+        }
+        .zi {
+            float:left;
+            margin-top:20px;
+            width:200px;
+            height:300px;
+        }
+    </style>
+    <script>
+        (function(){
+            window.onload=function(){
+                var d=document.getElementById("d");
+                var con=document.getElementById("con");
+                var bo=document.getElementById("bo");
+                var zi=document.getElementById('zi');
+                zi.innerHTML=
+                    "d.clientWidth="+d.clientWidth+"<br/>"+
+                    "d.clientHeight="+d.clientHeight+"<br/>"+
+                    "d.scrollWidth="+d.scrollWidth+"<br/>"+
+                    "d.scrollHeight="+d.scrollHeight+"<br/>"+
+                    "d.offsetWidth="+d.offsetWidth+"<br/>"+
+                    "d.offsetHeight="+d.offsetHeight+"<br/>"+
+                    "d.clientTop="+d.clientTop+"<br/>"+
+                    "d.clientLeft="+d.clientLeft+"<br/>"+
+                    "d.scrollTop="+d.scrollTop+"<br/>"+
+                    "d.scrollLeft="+d.scrollLeft+"<br/>"+
+                    "d.offsetTop="+d.offsetTop+"<br/>"+
+                    "d.offsetLeft="+d.offsetLeft+"<br/>"+
+                    "con.offsetTop="+con.offsetTop+"<br/>"+
+                    "con.offsetLeft="+con.offsetLeft+"<br/>";
+            }
+        })();
+    </script>
+</head>
+
+<body id="bo">
+<div class="d" id="d">
+    <div class="con" id="con">
+        <a href="http://cyg7561.blog.163.com/" title="鬼眼邪神的博客">鬼眼邪神的博客</a>
+    </div>
+</div>
+<div class="zi" id="zi">
+
+</div>
+</body>
+</html>

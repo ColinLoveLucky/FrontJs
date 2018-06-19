@@ -1,0 +1,62 @@
+<div class="main-wrapper" id="wrapper" ng-controller="HomeController" ng-init="initPage();">
+
+    <header class="app">
+        <div class="dropdown headerNva">
+            <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+                {{viewModel.userName}} <span class="glyphicon glyphicon-user"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" ng-click="Logout()">
+                        <span class="glyphicon glyphicon-off"></span>
+                        LogOut
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <aside class="sidebar">
+        <div class="sidebar-container">
+            <div class="sidebar-header">
+                <div class="brand">
+                    QKPIEC管控平台
+                </div>
+            </div>
+        </div>
+        <nav class="menu">
+            <div id="sidebar-menu-left">
+                <span class="one" ng-click="toggle('qone')"></span>
+                <span class="two" ng-click="toggle('qyj')"></span>
+            </div>
+            <ul class="nav">
+                <li ng-repeat="item in menus" ui-sref-active="submenuActive" ng-class="{true:'active'}[item.isNavCollapsed]">
+                    <a ng-if="item.url!=''" ui-state="item.url"
+                       aria-expanded="true" ng-class="{true:'has-arrow'}[item.url=='']">
+                        <i class="{{item.icon}}"></i>{{item.title}}
+                    </a>
+                    <a ng-if="item.url==''"
+                            href="javascript:void(0);"
+                            ng-click="item.isNavCollapsed = !item.isNavCollapsed"
+                            aria-expanded="true" ng-class="{true:'has-arrow'}[item.url=='']">
+                        <i class="{{item.icon}}"></i>{{item.title}}
+                    </a>
+                    <ul aria-expanded="false" class="sonTree">
+                        <li ui-sref-active="submenuActive" ng-repeat="children in item.childrens">
+                            <a ng-if="children.url!=''" ui-state="children.url"
+                            >{{children.title}}</a>
+                            <a ng-if="children.url==''"
+                            >{{children.title}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <span id="demo15"></span>
+    </aside>
+
+    <div id="page-wrapper">
+        <div ui-view></div>
+    </div>
+
+</div>
+</div>

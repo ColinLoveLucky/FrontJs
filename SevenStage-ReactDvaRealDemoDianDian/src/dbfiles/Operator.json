@@ -1,0 +1,14 @@
+﻿[
+  {
+    "Id": 1,
+    "Key": "T_Add",
+    "IsEnable": true,
+    "Description": "新增"
+  },
+  {
+    "Id": 2,
+    "Key": "T_Update",
+    "IsEnable": true,
+    "Description": "修改"
+  }
+]

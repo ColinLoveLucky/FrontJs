@@ -1,0 +1,10 @@
+1:npm install -g bower
+2:.bowerrc(dirctory:node_modules)
+2:bower init
+3:bower install jquery
+4:bower update jquery (update .bower.json denpendence)
+5:bower info jquery
+6:bower list
+7:bower help
+8:bower uninstall jquery
+

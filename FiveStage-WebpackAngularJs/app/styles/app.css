@@ -1,0 +1,259 @@
+.mask-loading {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: 0 0;
+    z-index: 9999;
+}
+
+.mask-loading .loading-icon {
+    -webkit-animation: rotate 1s linear infinite;
+    -o-animation: rotate 1s linear infinite;
+    animation: rotate 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    margin: -20px 0 0 -20px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: #37a884 #37a884 #fff #fff;
+    opacity: .9;
+    border-radius: 50px;
+}
+
+@-webkit-keyframes rotate {
+    0% {
+        -webkit-transform: rotate(0)
+    }
+    100% {
+        -webkit-transform: rotate(360deg)
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0)
+    }
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+.gray-bg {
+    background-color: #f3f3f4;
+}
+
+.middle-box {
+    max-width: 300px;
+    z-index: 100;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+.text-center {
+    background: #FBFBFB;
+}
+
+.animated {
+    animation-fill-mode: inherit;
+}
+
+.fadeInDown {
+    animation-name: fadeInDown;
+}
+
+.ht-300 {
+    height: 280px;
+    padding-top: 145px;
+}
+
+.ht-300 .white-border {
+    border: 6px solid #FFFFFF;
+}
+
+/*mian*/
+html,
+body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    min-height: 100%;
+    font-family: 'Open Sans', sans-serif;
+    overflow-x: hidden;
+}
+
+.main-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: gainsboro;
+    position: absolute;
+}
+
+.app {
+    background-color: #f0f0f0;
+    width: 100%;
+    height: 50px;
+    margin-left: 190px;
+}
+
+.headerNva {
+    line-height: 50px;
+    height: 50px;
+    padding: 0 auto;
+    float: right;
+    padding-right: 350px;
+}
+
+.sidebar {
+    background: #48505f;
+    width: 220px;
+    padding-bottom: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    -webkit-transition: left 0.3s ease;
+    transition: left 0.3s ease;
+    z-index: 20;
+}
+
+.sidebar .sidebar-container {
+    position: absolute;
+    top: 0;
+    bottom: 51px;
+    width: 100%;
+    left: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.sidebar-header .brand {
+    color: #fff;
+    text-align: center;
+    padding-left: 25px;
+    line-height: 70px;
+    font-size: 16px;
+}
+
+.sidebar .sidebar-container::-webkit-scrollbar-track {
+    background-color: #2c353e;
+}
+
+#sidebar-menu-left {
+    width: 30px;
+    position: fixed;
+    height: 100%;
+    background: #37A884;
+    top: 51px;
+}
+
+.one {
+    width: 30px;
+    height: 110px;
+    display: block;
+    background: url(../images/qone.jpg);
+    /*border: 1px solid #FFFFFF;*/
+    cursor: pointer;
+}
+
+.two {
+    width: 30px;
+    height: 110px;
+    display: block;
+    background: url(../images/qyj.jpg);
+    /*border: 1px solid #FFFFFF;*/
+    cursor: pointer;
+}
+
+.nav {
+    position: fixed;
+    height: 100%;
+    top: 51px;
+    left: 30px;
+    width: 190px;
+    text-align: left;
+}
+
+.nav a {
+    color: #FFFFFF;
+}
+
+.nav a i {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.nav li {
+    list-style-type: none;
+}
+
+.nav li a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.nav li a:hover {
+    background-color: #37a884;
+    text-decoration: none;
+
+}
+
+.sonTree li a:hover {
+    width: 190px;
+    padding-left: 53px;
+    left: -40px;
+}
+
+.submenuActive {
+    background-color: #37a884;
+}
+
+#page-wrapper {
+    min-height: 561px;
+    margin-top: 40px;
+    margin-left: 30px;
+}
+#demo15{
+    position: relative;
+}
+#demo15:after {
+    border: 10px solid transparent;
+    border-left: 10px solid #f00;
+    width: 0;
+    height: 0;
+    position: absolute;
+    content: ' '
+}
+.has-arrow:after {
+    left: 1em;
+    right: auto;
+    -webkit-transform: rotate(135deg) translateY(-50%);
+    -ms-transform: rotate(135deg) translateY(-50%);
+    -o-transform: rotate(135deg) translateY(-50%);
+    transform: rotate(135deg) translateY(-50%);
+    -webkit-transform-origin: top;
+    -ms-transform-origin: top;
+    -o-transform-origin: top;
+    transform-origin: top;
+}
+
+.active .has-arrow:after {
+    -webkit-transform: rotate(225deg) translateY(-50%);
+    -ms-transform: rotate(225deg) translateY(-50%);
+    -o-transform: rotate(225deg) translateY(-50%);
+    transform: rotate(225deg) translateY(-50%);
+    -webkit-transform-origin: top;
+    -ms-transform-origin: top;
+    -o-transform-origin: top;
+    transform-origin: top;
+}

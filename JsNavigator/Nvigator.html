@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nvaigator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav {
+            width: 800px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 12px;
+            background-color: #ff5640;
+            text-align: center;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .nav-main {
+            height: 100%;
+            width: 100%;
+            list-style: none;
+        }
+
+        .nav-main li {
+            height: 100%;
+            width: 120px;
+            color: #ffffff;
+            display: block;
+            float: left;
+            cursor: pointer;
+        }
+
+        .nav-main li span {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            margin-left: 18px;
+            background: url('img/down-icon.png') no-repeat;
+        }
+
+        .nav-main li:hover {
+            background: #ff3e3e;
+        }
+
+        .hidden-box {
+            width: 118px;
+            position: absolute;
+            border: 1px solid #ff3e3e;
+            border-top: 0;
+            display: none;
+            top: 30px;
+        }
+
+        .hidden-box ul {
+            list-style-type: none;
+            color: #ff3e3e;
+            cursor: pointer;
+        }
+
+        .hidden-box li:hover {
+            background: #ff3e3e;
+            color: #fff;
+        }
+
+        .hidden-loc-index {
+            left: 121px;
+        }
+
+        .hidden-loc-us {
+            left: 242px;
+        }
+
+        .hidden-loc-info {
+            left: 363px;
+        }
+
+        .hover-up {
+            transition-duration: .5s;
+            transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+        }
+
+        .hover-down {
+            transition-duration: .5s;
+            transform: rotate(0deg);
+            -webkit-transform: rotate(0deg);
+        }
+    </style>
+</head>
+<body>
+<div class="nav">
+    <ul class="nav-main">
+        <li>首页</li>
+        <li id="li-1"><a>产品信息</a><span></span></li>
+        <li id="li-2">关于我们<span></span></li>
+        <li id="li-3">商家信息<span></span></li>
+        <li><a>加入我们</a></li>
+        <li><a>联系我们</a></li>
+    </ul>
+    <div id="box-1" class="hidden-box hidden-loc-index">
+        <ul>
+            <li><a>关于我们</a></li>
+            <li><a>产品信息</a></li>
+            <li><a>关于我们</a></li>
+        </ul>
+    </div>
+    <div id="box-2" class="hidden-box hidden-loc-us">
+        <ul>
+            <li><a>关于我们</a></li>
+            <li><a>产品信息</a></li>
+            <li><a>关于我们</a></li>
+            <li><a>商家信息</a></li>
+        </ul>
+    </div>
+    <div id="box-3" class="hidden-box hidden-loc-info">
+        <ul>
+            <li><a>关于我们</a></li>
+            <li><a>产品信息</a></li>
+            <li><a>关于我们</a></li>
+            <li><a>商家信息</a></li>
+            <li><a>加入我们</a></li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript" src="Js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var num;
+        $(".nav li[id]").hover(function () {
+            $(this).children().removeClass().addClass("hover-up");
+            num = $(this).attr("id").substr(3);
+            $("#box-" + num).slideDown(300);
+        }, function () {
+            $(this).children().removeClass().addClass("hover-down");
+            $("#box-" + num).hide();
+        });
+        $(".hidden-box").hover(function () {
+            $(this).show();
+            $("#li-" + num).children().removeClass().addClass("hover-up");
+        }, function () {
+            $(this).slideUp(300);
+            $("#li-" + num).children().removeClass().addClass("hover-down");
+        });
+    });
+</script>
+</body>
+</html>

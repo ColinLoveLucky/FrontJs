@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<script type="text/javascript">
+    var fn = function () {
+        return {
+            _qf: new qf()
+        };
+    }
+    fn.prototype.ShowHi = function () {
+        alert('hi');
+    }
+    var qf = function () {
+        this.constructorA = this;
+        this.hsaOwnPropertyA = function () {
+        }
+    }
+    var pf = function () {
+        return "SayHi";
+    }
+    pf.prototype.showHi = function () {
+        return "hi";
+    }
+    pf.prototype.constructor = function () {
+        return "hello World";
+    }
+    console.log(typeof fn);
+    console.log(fn());
+    var num = 10;
+    console.log(typeof num);
+    var isTrue = true;
+    console.log(typeof isTrue);
+    var isString = "hi";
+    console.log(typeof  isString);
+    var undif;
+    console.log(typeof  undif);
+    var nullType = null;
+    console.log(typeof  nullType);
+    console.log(null == undefined);
+    console.log(null === undefined);
+    console.log(nullType);
+    console.log(undif);
+    var x1 = 24.00;
+    console.log(typeof  x1);
+    var cars = ["benz"];
+    console.log(typeof  cars);
+    var persons = new Array();
+    console.log(typeof  persons);
+    var dogs = {};
+    console.log(typeof  dogs);
+    var x = new Number();
+    console.log(typeof  x);
+    var xF = new fn();
+    console.log(typeof  xF);
+    x.a = 10;
+    console.log(typeof x.a);
+    x.sayHi = function () {
+        console.log('hi');
+    }
+    x.sayHi();
+    var y = new Boolean();
+    console.log(typeof  y);
+    y.sayHi = function () {
+        console.log("say Y");
+    };
+    y.sayHi();
+    console.log(typeof  Object);
+    console.log(typeof new fn());
+    console.log(typeof y);
+    console.log(Object);
+    console.log(fn);
+    console.log(fn());
+    console.log(new fn());
+    console.log(typeof new Object());
+    console.log(Object.prototype);
+    console.log(new Object());
+    console.log(Object());
+    console.log(new pf());
+    console.log(pf);
+    console.log(pf.prototype);
+    console.log(pf.__proto__);
+    console.log(pf.constructor);
+    console.log(new pf().__proto__);
+    console.log(new pf().showHi === new pf().__proto__.showHi);
+    console.log(new pf().__proto__.constructor === pf);
+    console.log(pf.prototype.constructor === pf);
+    console.log(new pf().constructor)
+    console.log(new pf().constructor === pf);
+    var A = function () {
+        this.name = "zhangsan";
+        this.age = 20;
+    }
+    A.prototype.ShowHi = function () {
+        console.log(this.name + ":" + this.age);
+    }
+    var B = function () {
+    }
+    B.prototype = new A();
+    console.log(typeof B.prototype);
+    console.log(B.prototype);
+    console.log(B.prototype.constructor === A);
+
+    function F() {
+        this.ff = "zhangsan";
+    }
+
+    F.prototype = {
+        _name: 'Eric',
+        getName: function () {
+            return this._name;
+        }
+    }
+    var f = new F();
+    console.log(F.prototype.constructor === f.constructor);
+    console.log(f.constructor === Object);
+    var per = {
+        name: "zhangsan",
+        age: '20'
+    };
+    console.log(per);
+    console.log(f);
+    function anomous() {
+    }
+    console.log(typeof Object())
+    console.log(typeof  Object);
+    console.log(typeof new anomous());
+    console.log(typeof per);
+    console.log(new anomous());
+    console.log(Object());
+    console.log(per);
+    console.log(anomous.prototype);
+    console.log(per.constructor === Object);
+    console.log(Object);
+    console.log(Object().constructor);
+    var TF=function () {
+    }
+    console.log(Object.constructor);
+    console.log(TF.constructor);
+    console.log(TF.prototype.constructor)
+</script>
+</body>
+</html>

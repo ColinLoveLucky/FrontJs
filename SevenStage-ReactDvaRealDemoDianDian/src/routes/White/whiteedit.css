@@ -1,0 +1,25 @@
+
+
+.card {
+  margin-bottom: 24px;
+}
+
+.margin_5{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+
+.margin_bottom_10{
+  margin-bottom: 10px;
+}
+
+.check_margin{
+  margin-bottom: 5px;
+  margin-top: 2px;
+}
+
+.inset {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

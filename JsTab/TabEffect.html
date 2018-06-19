@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tab Effect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #tabbox {
+            width: 600px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .tabs {
+            height: 32px;
+            width: 100%;
+            border-left: 1px solid #999999;
+            border-bottom: 1px solid #999999;
+        }
+
+        .tabs li {
+            height: 31px;
+            line-height: 31px;
+            border: 1px solid #999999;
+            border-left: none;
+            border-bottom: none;
+            background: #e0e0e0;
+            float: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tabs li a {
+            font-size: 14px;
+            color: #000000;
+            text-decoration: none;
+            display: block;
+            padding: 0 20px;
+        }
+
+        .tabs li a:hover {
+            background: #cccccc;
+        }
+
+        .tab_conbox {
+            border: 1px solid #999999;
+            border-top: none;
+        }
+
+        .tab_con {
+            display: none;
+            font-size: 14px;
+            padding: 12px;
+            line-height: 175%;
+        }
+
+        .tabs .thistab {
+            background: #ffffff;
+            border-bottom: 1px solid #ffffff;
+        }
+
+    </style>
+</head>
+<body>
+<div id="tabbox">
+    <ul class="tabs">
+        <li><a tab="tab1">French</a></li>
+        <li><a tab="tab2">Chinese</a></li>
+        <li><a tab="tab3">German</a></li>
+        <li><a tab="tab4">Japan</a></li>
+    </ul>
+    <ul class="tab_conbox">
+        <li class="tab_con" id="tab1">Bonjour, bonjour</li>
+        <li class="tab_con" id="tab2">hi,你好</li>
+        <li class="tab_con" id="tab3">Hallo, Wie geht 's</li>
+        <li class="tab_con" id="tab4">良くて、こんにちは</li>
+    </ul>
+</div>
+<script type="text/javascript" src="Js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        jQuery.jqtab = function (tabs, tabcon) {
+            $(tabcon).hide();
+            $(tabs + " li:first").addClass("thistab").show();
+            $(tabcon + ":first").show();
+            $(tabs + " li").click(function () {
+                $(tabcon).hide();
+                $(tabs + " li").removeClass("thistab");
+                $(this).addClass("thistab");
+                var activeTab = $(this).find("a").attr("tab");
+                $("#" + activeTab).fadeIn();
+                return false;
+            })
+        };
+        $.jqtab(".tabs", ".tab_con");
+    })
+</script>
+</body>
+</html>

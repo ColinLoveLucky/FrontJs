@@ -1,0 +1,9 @@
+{
+	"T_USERNAME":"User Name",
+	"T_USERPWD":"Password",
+	"T_LOGIN":"Login",
+	"T_Register":"Register",
+	"T_Test":"test",
+	"T_UserManagement":"User Management",
+	"T_Add":"Add"
+}

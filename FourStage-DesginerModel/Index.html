@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Designer Model</title>
+    <style type="text/css">
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            list-style: circle;
+        }
+
+        .normal {
+            color: #e0e0e0;
+        }
+
+        .has-img {
+            float: left;
+            width: 100px;
+            height: 100px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .alert {
+            width: 500px;
+            height: 200px;
+            background-color: #e0e0e0;
+            color: green;
+        }
+
+        .a-close {
+            width: 30px;
+            height: 25px;
+            color: #e0e0;
+            background-color: #e0e0e0;
+        }
+
+        .a-confirm {
+            width: 50px;
+            height: 35px;
+            font-size: 15px;
+            background-color: rosybrown;
+            color: #e0e0e0;
+        }
+
+        .test {
+            color: red;
+        }
+    </style>
+    <script type="text/javascript" src="Js/jquery-3.2.1.min.js"></script>
+    <!--<script type="text/javascript" src="Js/ObjClsure.js"></script>-->
+    <!--<script type="text/javascript" src="Js/BookClosureJs.js"></script>-->
+    <!--<script type="text/javascript" src="Js/inherit.js"></script>-->
+    <!--<script type="text/javascript" src="Js/CreateModel.js"></script>-->
+    <!--<script type="text/javascript" src="Js/StructureJs.js"></script>-->
+    <!--<script type="text/javascript" src="Js/ActionModel.js"></script>-->
+    <script type="text/javascript" src="Js/ModelLoad.js"></script>
+    <script type="text/javascript" src="Js/AwaitJs.js"></script>
+</head>
+<body>
+<input type="button" id="myinput" value="bind click"/>
+<div id="box" style="width: 200px; height: 200px; background-color: rosybrown">
+    <input type="button" id="btn" value="语言"/>
+</div>
+<img width="100px" height="100px"/>
+<img width="100px" height="100px"/>
+<img width="100px" height="100px"/>
+<div>
+    <P><input type="tel" id="txtTel" onclick="alert('Hello World')"/></P>
+    <p><input type="password" id="txtPassword"/></p>
+</div>
+<div>
+    <span id="spanA">Hello Kitte</span>
+    <span id="spanB">Hello Tom</span>
+</div>
+<div id="container"></div>
+<div id="next_page">下一页</div>
+<div>
+    <p>舆情荷叶 等级 8 消息<span id="msg_num">0</span>条</p>
+    <h2>最新发布消息</h2>
+    <ul id="msg">
+    </ul>
+    <div>
+        <input type="text" id="user_input" style="width: 200px;height: 200px;"/>
+        <input id="user_submit" type="button" value="提交"/>
+    </div>
+</div>
+<div>
+    Validate:<input id="txtNum"/>
+    <span id="validateSpan"/>
+</div>
+
+<div>
+    ModuleLoading:
+    <div id="divTest">test</div>
+    <div>
+        Async ModuleLoading
+        <div id="demo" style=" width: 200px; height: 200px; background:bisque"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    window.onload = function () {
+        var btn = document.getElementById('btn');
+        var box = document.getElementById('box');
+        btn.onclick = function (ev) {
+            var oEvent = ev || event;
+            box.style.display = 'block';
+            //oEvent.cancelBubble = true;//高版本浏览器
+            //  stopBubble(oEvent);
+            stopBubble(oEvent);
+            //在低版本的chrome和firefox浏览器中需要兼容性处理
+            //高版本chrome和firefox浏览器直接使用上面这行代码即可
+        }
+        document.onclick = function () {
+            box.style.display = 'none';
+        }
+
+    }
+
+    //阻止冒泡事件的兼容性处理
+    function stopBubble(e) {
+        if (e && e.stopPropagation) { //非IE
+            e.stopPropagation();
+        } else { //IE
+            alert(1);
+            window.event.cancelBubble = true;
+        }
+    }
+</script>
+</body>
+</html>

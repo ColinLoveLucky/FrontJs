@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <style type="text/css">
+        #wrap {
+            width: 200px;
+            height: 200px;
+            background: orange;
+        }
+
+        #outer {
+            position: relative;
+            top: 50px;
+            left: 50px;
+            width: 100px;
+            height: 100px;
+            background: #eeddff;
+        }
+
+        #inner {
+            position: relative;
+            top: 25px;
+            left: 25px;
+            width: 50px;
+            height: 50px;
+            background: #44ddff;
+            margin-top: 10px;
+        }
+
+        #wrap1 {
+            width: 200px;
+            height: 200px;
+            background: orange;
+        }
+
+        #outer1 {
+            position: relative;
+            top: 50px;
+            left: 50px;
+            width: 100px;
+            height: 100px;
+            background: #eeddff;
+        }
+
+        #inner1 {
+            position: relative;
+            top: 25px;
+            left: 25px;
+            width: 50px;
+            height: 50px;
+            background: #44ddff;
+        }
+
+        #wrap2 {
+            width: 200px;
+            height: 200px;
+            background: orange;
+        }
+
+        #xxout {
+            position: relative;
+            top: 50px;
+            left: 50px;
+            width: 100px;
+            height: 100px;
+            background: #eeddff;
+        }
+
+        #inner2 {
+            position: relative;
+            top: 25px;
+            left: 25px;
+            width: 50px;
+            height: 50px;
+            background: #44ddff;
+        }
+
+        #div1 {
+            width: 100px;
+            height: 200px;
+            border: 1px solid red;
+            position: absolute;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div>事件捕获阶段==>处于目标阶段==>事件冒泡阶段</div>
+<div>
+    获得event对象兼容性写法
+    event || (event = window.event);
+    获得target兼容型写法
+    event.target||event.srcElement
+    阻止浏览器默认行为兼容性写法
+    event.preventDefault ? event.preventDefault() : (event.returnValue = false);
+    阻止冒泡写法
+    event.stopPropagation ? event.stopPropagation() : (event.cancelBubble = true);
+</div>
+<input id="btnDom" type="button" value="Click" onclick="alert('DOM0Level')">
+<div id="wrap">
+    <div id="outer">
+        <div id="inner"></div>
+    </div>
+</div>
+<div id="wrap1">
+    <div id="outer1">
+        <div id="inner1"></div>
+    </div>
+</div>
+<div id="wrap2">
+    <div id="xxout">
+        <div id="inner2"></div>
+    </div>
+</div>
+
+<a href="http://www.baidu.com" id="test"> Click Me </a>
+<div id="div1"></div>
+<div id="div5" style="width: 500px;height: 500px;background-color: #eeddff"></div>
+<input type="button" value="Remove" id="btnRemove" />
+</body>
+<script type="text/javascript">
+    var btn = document.getElementById("btnDom");
+    btn.onclick = function () {
+        alert('click Me!');
+    }
+    function dom2() {
+        alert("Dom2Level");
+    }
+    function dom2Plus() {
+        alert("Dom2LevelPlus");
+    }
+    btn.addEventListener('click', dom2);
+    btn.addEventListener('click', dom2Plus);
+    var wrap = document.getElementById('wrap');
+    var outer = document.getElementById('outer');
+    var inner = document.getElementById('inner');
+    wrap.addEventListener('click', function () {
+        alert('789');
+    }, false);
+    outer.addEventListener('click', function () {
+        alert('456');
+    }, false);
+    inner.addEventListener('click', function () {
+        alert('123');
+    }, false);
+    var wrap1 = document.getElementById('wrap1');
+    var outer1 = document.getElementById('outer1');
+    var inner1 = document.getElementById('inner1');
+    wrap1.addEventListener('click', function () {
+        alert('wrap');
+    }, true);
+    outer1.addEventListener('click', function () {
+        alert('outer');
+    }, true);
+    inner1.addEventListener('click', function () {
+        alert('inner');
+    }, true);
+    var wrap2 = document.getElementById('wrap2');
+    var xxout = document.getElementById('xxout');
+    var inner2 = document.getElementById('inner2');
+    wrap2.addEventListener('click', function () {
+        alert('789');
+    }, false);
+    xxout.addEventListener('click', function () {
+        alert('456');
+    }, false);
+    wrap2.addEventListener('click', function () {
+        alert('wrap');
+    }, true);
+    xxout.addEventListener('click', function () {
+        alert('outer');
+    }, true);
+    inner2.addEventListener('click', function () {
+        alert('inner');
+    }, true);
+    inner2.addEventListener('click', function () {
+        alert('123');
+    }, false);
+    //阻止事件默认行为
+    function cancelHandler(event) {
+        var event = event || window.event;//兼容IE
+        //取消事件相关的默认行为
+        if (event.preventDefault) {
+            event.preventDefault();
+        }//标准技术
+        if (event.returnValue) {
+            event.returnValue = false;
+        }   //兼容IE9之前的IE
+        return false;    //用于处理使用对象属性注册的处理程序
+    }
+    //停止事件冒泡
+    function stopBubble(e) {
+        // 如果提供了事件对象，则这是一个非IE浏览器
+        if (e && e.stopPropagation) {
+            // 因此它支持W3C的stopPropagation()方法
+            e.stopPropagation();
+        } else {
+            // 否则，我们需要使用IE的方式来取消事件冒泡
+            window.event.cancelBubble = true;
+        }
+    }
+    document.getElementById('test').onclick = function (e) {
+        cancelHandler(e);
+    };
+    var oDiv = document.getElementById('div1');
+    document.oncontextmenu = function (ev) {
+        var ev = ev || event;
+        oDiv.style.display = 'block';
+        oDiv.style.left = ev.clientX + 'px';
+        oDiv.style.top = ev.clientY + 'px';
+        return false;
+    }
+    document.onclick = function () {
+        oDiv.style.display = 'none';
+    }
+    function on(id, eventType, fn) {
+        var dom = this.isString(id) ? this.$id(id) : id;
+        if (dom.addEventListener) {
+            dom.addEventListener(eventType, fn);
+        } else if (dom.attachEvent) {
+            dom.attachEvent('on' + eventType, fn);
+        }
+        else {
+            dom['on' + type] = fn;
+        }
+    }
+    // 解除绑定
+    function un(id, eventType, fn) {
+        var dom = this.$id(id);
+        if (dom.removeEventListener) {
+            dom.removeEventListener(eventType, fn, false);
+        } else if (dom.detachEvent) {
+            dom.detachEvent("on" + eventType, fn)
+        }
+        else {
+            dom['on' + eventType] = null;
+        }
+    }
+    $(function () {
+        $("#div5").bind("click.plugin",function(){alert("click.plugin");});
+        $("#div5").bind("click",function(){alert("click");});
+        $("#div5").bind("mouseover.plugin",function(){alert("mouseover.plugin");});
+        $("#btnRemove").click(function(){
+            $("#div5").unbind(".plugin");
+        });
+    });
+</script>
+</html>

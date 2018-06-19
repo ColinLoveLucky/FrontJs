@@ -1,0 +1,26 @@
+div {
+  color: #1875e7;
+  width: 100px;
+  height: 100px;
+  background-color: #2e2e2e;
+  border-left-radius: 5px; }
+
+body div {
+  margin: 72px;
+  top: 150px;
+  right: 20%; }
+
+a:hover {
+  color: #ffb3ff; }
+
+.class1, .class2 {
+  border: 1px solid #ddd; }
+
+.class2 {
+  font-size: 120%; }
+
+div {
+  float: left;
+  margin-left: 20px; }
+
+/*# sourceMappingURL=first.css.map */

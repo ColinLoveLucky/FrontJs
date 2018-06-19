@@ -1,0 +1,49 @@
+[
+  {
+    "Role": "UserRole",
+    "Key": "T_User",
+    "ICon": "a.img",
+    "Url": "",
+    "childs": [
+      {
+        "Key": "T_UserManager",
+        "Icon": "b.img",
+        "Url": "user/userManager",
+        "childs": [],
+        "Funcs":["Add","Delete","Update"]
+      },
+      {
+        "Key": "T_UserReport",
+        "Icon": "b.img",
+        "Url": "user/userReport",
+        "childs": [],
+        "Funcs":["Add","Delete","Report"]
+      }
+    ],
+    "Funcs":[]
+  },
+  {
+    "Role": "Admin",
+    "Key": "T_User",
+    "ICon": "a.img",
+    "Url": "",
+    "childs": [
+      {
+        "Key": "T_UserManager",
+        "Icon": "b.img",
+        "Url": "user/userManager",
+        "childs": [],
+        "Funcs":["Add","Delete","Update"]
+      },
+      {
+        "Key": "T_UserReport",
+        "Icon": "b.img",
+        "Url": "user/userReport",
+        "childs": [],
+        "Funcs":["Add","Delete","Report"]
+      }
+    ],
+    "Funcs":[]
+  }
+]
+

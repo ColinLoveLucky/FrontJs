@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="Js/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container" id="divClass"></div>
+<div class="container" id="divExtend"></div>
+<div class="container" id="divExtend2"></div>
+<div class="container" id="divPlo"></div>
+<div class="container" id="divPlo2"></div>
+</body>
+<script type="text/javascript">
+    $(function () {
+        function person(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        };
+        var p = new person("zs", 20, "man");
+        $("#divClass").html("<h1>实现继承:name:" + p.name + "</h1>");
+
+        function stu(name, age) {
+            this.name = name;
+            this.age = age;
+            this.show = function () {
+                return "<h1>name:" + this.name + "  age:" + this.age + "</h1>";
+            }
+        }
+
+        function midStu(name, age) {
+            this.stu = stu;
+            this.stu(name, age);
+            this.payFee = function (money) {
+                return "<h1>缴费" + money * 0.8 + "</h1>";
+            }
+        }
+
+        var stu = new midStu("zs", 13);
+        $("#divExtend").html(stu.show() + stu.payFee(100));
+
+        function animal(name) {
+            var name = name;
+            this.showName = function () {
+                return name;
+            }
+        }
+
+        function bird(name, pro) {
+            animal.call(this, name);
+            var property = pro;
+            this.getProperty = function () {
+                return property;
+            }
+        }
+
+        bird.prototype = animal.prototype;
+        bird.prototype.show = function () {
+            return this.showName() + "-" + this.getProperty();
+        }
+        var bird2 = new bird("大鹏", "我可以飞翔的很高");
+        $("#divExtend2").html(bird2.show());
+
+        function fly() {
+            this.flyShy = function () {
+                if (arguments.length == 1)
+                    return this.show1(arguments[0]);
+                else if (arguments.length == 2) {
+                    return this.show2(arguments[0], arguments[1]);
+                }
+            }
+            this.show1 = function (name) {
+                return name + "坐飞机飞翔";
+            }
+            this.show2 = function (name, tools) {
+                return name + tools + "飞翔";
+            }
+        };
+        var flyObj = new fly();
+        $("#divPlo").html("<h1>" + flyObj.flyShy("大象", "用鼻子")
+            + "</h1><br/> <h1>" + flyObj.flyShy("张三") + "</h1>");
+        function Master(name) {
+            this.name = name;
+        }
+        Master.prototype.feed = function (animal, food) {
+            return this.name + "正在给" + animal.name + "吃" + food.name;
+        }
+        function Animal(name) {
+            this.name = name;
+        }
+        function Cat(name) {
+            this.animal = Animal;
+            this.animal(name);
+        }
+        function Dog(name) {
+            this.animal = Animal;
+            this.animal(name);
+        }
+        function Monkey(name) {
+            Animal.apply(this, [name]);
+        }
+        function Food(name) {
+            this.name = name;
+        }
+        function Fish(name) {
+            Food.call(this, name);
+        }
+        function Bone(name) {
+            Food.apply(this, [name]);
+        }
+        function Banana(name) {
+            Food.apply(this, [name]);
+        }
+        var cat = new Cat("猫");
+        var fish = new Fish("鱼");
+        var dog = new Dog("狗");
+        var bone = new Bone("骨头");
+        var monkey = new Monkey("猴子");
+        var banana = new Banana("香蕉");
+        var master = new Master("Master");
+        $("#divPlo2").html("<h1>" + master.feed(cat, fish) + "</h1>" +
+            "<h1>" + master.feed(dog, bone) + "</h1>" +
+            "<h1>" + master.feed(monkey, banana) + "</h1>")
+    })
+
+</script>
+</html>

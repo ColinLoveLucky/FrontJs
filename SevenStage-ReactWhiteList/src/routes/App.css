@@ -1,0 +1,97 @@
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 16px;
+  cursor: pointer;
+  transition: color .3s;
+}
+
+.trigger:hover {
+  color: #108ee9;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.link:visited {
+  text-decoration: none;
+}
+
+.link:active {
+  text-decoration: none;
+}
+
+.logo {
+  height: 32px;
+  background: #333;
+  border-radius: 6px;
+  margin: 16px;
+}
+.rightWarpper {
+  float:right;
+  padding-right: 18px;
+  margin-top:12px;
+}
+.bread {
+  height:64px;
+  line-height: 64px;
+  padding: 0 15px;
+  border-top:  1px solid #e8e8e8;
+  background-color: #fff;
+}
+.antBadgeDot {
+  position: absolute;
+  transform: translateX(-50%);
+  transform-origin: 0 center;
+  top: -3px;
+  height: 6px;
+  width: 6px;
+  border-radius: 100%;
+  background: #f5222d;
+  z-index: 10;
+  box-shadow: 0 0 0 1px #fff;
+}
+.antBadgeStatus {
+  line-height: inherit;
+  vertical-align: baseline;
+}
+.antBadgeStatusDot {
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  border-radius: 50%;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+.antBadgeStatusRejected {
+  background-color: #87D068;
+}
+.antBadgeStatusPendingApprove {
+  background-color: #008CEC;
+  position: relative;
+}
+.antBadgeStatusApproved{
+  background-color: #35BE7B;
+}
+.antBadgeStatusPendingApprove:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid #008CEC;
+  content: '';
+  animation: antStatusProcessing 1.2s infinite ease-in-out;
+}
+.antBadgeStatusDefault {
+  background-color: #d9d9d9;
+}

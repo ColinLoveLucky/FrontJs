@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SportsFramework</title>
+    <style type="text/css">
+        .move {
+            background-color: #eeddff;
+            width: 100px;
+            height: 400px;
+            position: absolute;
+        }
+        .opacity {
+            background-color: #44ddff;
+            width: 100px;
+            height: 400px;
+            position: absolute;
+            left:300px;
+        }
+    </style>
+</head>
+<body>
+<div id="divMove" class="move">
+</div>
+<div id="divOpacity" class="opacity">
+</div>
+</body>
+<script type="text/javascript">
+    var timer = null;
+    function startMove(element, iTarget) {
+        clearInterval(timer);
+        timer = setInterval(function () {    //因为速度要动态改变，所以必须放在定时器中
+            var iSpeed = (iTarget - element.offsetLeft) / 10; //(目标值-当前值)/缩放系数=速度
+            iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed); //速度取整
+            if (element.offsetLeft === iTarget) {//结束运动
+                clearInterval(timer);
+            } else {
+                element.style.left = element.offsetLeft + iSpeed + "px";
+            }
+        }, 30);
+    }
+    var divMove = document.getElementById("divMove");
+    startMove(divMove, 300);
+    function getStyle(element, attr) {    //IE写法
+        if (element.currentStyle) {
+            return element.currentStyle[attr];    //标准
+        } else {
+            return getComputedStyle(element, false)[attr];
+        }
+    }
+    function startOpacity(element, attr, iTarget) {
+        clearInterval(element.timer);
+        element.timer = setInterval(function () {        //因为速度要动态改变，所以必须放在定时器中
+            var iCurrent = 0;
+            if (attr === "opacity") { //为透明度时执行。
+                iCurrent = Math.round(parseFloat(getStyle(element, attr)) * 100);
+            } else { //默认情况
+                iCurrent = parseInt(getStyle(element, attr)); //实际样式大小
+            }
+            var iSpeed = (iTarget - iCurrent) / 10; //(目标值-当前值)/缩放系数=速度
+            iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed); //速度取整
+            if (iCurrent === iTarget) {//结束运动
+                clearInterval(element.timer);
+            } else {
+                if (attr === "opacity") { //为透明度时，执行
+                    element.style.filter = "alpha(opacity:" + (iCurrent + iSpeed) + ")"; //IE
+                    element.style.opacity = (iCurrent + iSpeed) / 100; //标准
+                } else { //默认
+                    element.style[attr] = iCurrent + iSpeed + "px";
+                }
+            }
+        }, 30);
+    }
+    var opacityElem = document.getElementById("divOpacity");
+    startOpacity(opacityElem, "left", 900);
+
+</script>
+</html>

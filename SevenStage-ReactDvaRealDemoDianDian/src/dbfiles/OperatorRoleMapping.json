@@ -1,0 +1,9 @@
+﻿[
+  {
+    "Id": 1,
+    "RoleId": 1,
+    "MenuId": 1,
+    "OperatorIds": [ 1, 2 ],
+    "Description": "操作"
+  }
+]

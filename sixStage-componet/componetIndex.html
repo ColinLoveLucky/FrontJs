@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Component</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+    var Class = (function () {
+        var _extend = function () {
+            var _subClass = function () {
+            };
+            var items = Array.prototype.slice.call(arguments) || [];
+            items.forEach(function (currentValue) {
+                if (typeof currentValue == "object") {
+                    for (var p in currentValue) {
+                        _subClass.prototype[p] = currentValue[p];
+                    }
+                }
+                if (typeof currentValue == "function") {
+                    for (var p in currentValue.prototype) {
+                        _subClass.prototype[p] = currentValue.prototype[p];
+                    }
+                }
+            })
+            return _subClass;
+        }
+        var Class = function () {
+        };
+        Class.extend = _extend;
+        return Class;
+    })();
+    var Event = Class.extend({
+        on: function (key, listener) {
+            if (!this.__events) {
+                this.__events = {};
+            }
+            if (!this.__events[key]) {
+                this.__events[key] = [];
+            }
+            this.__events[key].push(listener);
+            return this;
+        },
+        fire: function (key) {
+            if (!this.__events || !this.__events[key])
+                return;
+            var args = Array.prototype.slice.call(arguments, 1) || [];
+            var listeners = this.__events[key];
+            listeners.forEach(function (value) {
+                value.apply(this, args);
+            })
+            return this;
+        },
+        off: function (key, listener) {
+            if (!key && !listener) {
+                this.__evnets = {};
+            }
+            if (key && !listener) {
+                delete this.__events[key];
+            }
+            if (key && listener) {
+                var listeners = this.__events[key];
+                var findIndex = -1;
+                listeners.forEach(function (value, index) {
+                    if (listener === value) {
+                        findIndex = index;
+                    }
+                })
+                if (findIndex != -1) {
+                    listeners.splice(findIndex, 1);
+                }
+            }
+            return this;
+        }
+    })
+    var EventExtend = Class.extend(Event, {
+        destroy: function () {
+            this.off();
+        }
+    });
+    var a = new Event();
+    a.on("test", function (msg) {
+        alert(msg);
+    });
+    a.fire('test', "hello World");
+    var d = new EventExtend();
+    d.on("test",function (msg) {
+        alert(msg);
+    });
+    d.fire("test", "Hi");
+</script>
+</html>

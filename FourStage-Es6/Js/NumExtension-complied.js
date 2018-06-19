@@ -1,0 +1,31 @@
+'use strict';
+
+$(function () {
+    console.log(Number.isFinite(15));
+    console.log(Number.isFinite(NaN));
+    console.log(Number.isNaN(NaN));
+    console.log(Number.parseInt('12.34'));
+    console.log(Number.parseFloat('12.35#'));
+    console.log(Number.isInteger(25.0));
+    console.log(Number.EPSILON.toFixed(20));
+    console.log(Math.pow(2, 53) == Math.pow(2, 53) + 1);
+    console.log(Number.isSafeInteger(2));
+    console.log(Number.isSafeInteger(Number.MAX_SAFE_INTEGER + 1));
+    console.log(Math.trunc(4.1));
+    console.log(Math.sign(-5));
+    console.log(Math.sign(5));
+    console.log(Math.sign(0));
+    console.log(Math.sign(-0));
+    console.log(Math.sign('-9'));
+    console.log(Math.sign('foo'));
+    console.log(Math.cbrt(2));
+    console.log(Math.imul(2, 4));
+    console.log(Math.imul(-1, 8));
+    console.log(Math.imul(-2, -2));
+    console.log(Math.fround(0));
+    console.log(Math.fround(1.337));
+    console.log(Math.fround(1.5));
+    console.log(Math.hypot(3, 4));
+    console.log(Math.expm1(0));
+    console.log(2 ** 2);
+});

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BootStrap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+        @media screen and (max-width: 600px) {
+            .classA {
+                width: 980px;
+                text-align: center;
+                background-color: red;
+                height: 200px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Column 1</h3>
+            <p>学的不仅是技术，更是梦想！</p>
+            <p>再牛逼的梦想,也抵不住你傻逼似的坚持！</p>
+        </div>
+        <div class="col-sm-4">
+            <h3>Column 2</h3>
+            <p>学的不仅是技术，更是梦想！</p>
+            <p>再牛逼的梦想,也抵不住你傻逼似的坚持！</p>
+        </div>
+        <div class="col-sm-4">
+            <h3>Column 3</h3>
+            <p>学的不仅是技术，更是梦想！</p>
+            <p>再牛逼的梦想,也抵不住你傻逼似的坚持！</p>
+        </div>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Street</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>Anna Awesome</td>
+            <td>Broome Street</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Debbie Dallas</td>
+            <td>Houston Street</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>John Doe</td>
+            <td>Madison Street</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            　.c0l-xs-　　无论屏幕宽度如何，单元格都在一行，宽度按照百分比设置；试用于手机；
+            　　
+        </div>
+        <div class="col-xs-12">.col-sm-　　屏幕大于768px时，单元格在一行显示；屏幕小于768px时，独占一行；试用于平板；
+            　　
+        </div>
+        　
+        <div class="col-xs-12">.col-md-　　屏幕大于992px时，单元格在一行显示；屏幕小于992px时，独占一行；试用于桌面显示器；
+            　　　
+        </div>
+        　
+        <div class="col-xs-12">.col-lg-　屏幕大于1200px时，单元格在一行显示；屏幕小于1200px时，独占一行；适用于大型桌面显示器；</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-lg-5 col-xs-6 col-sm-12">col-lg-8</div>
+        <div class="col-md-6 col-lg-5 col-xs-6 col-sm-12">col-lg-4</div>
+    </div>
+</div>
+<div class="container">
+    <h1>Hello, world!</h1>
+    <div class="row">
+        <p>
+            排序前
+        </p>
+        <div class="col-xs-4"
+             style="background-color: #dedef8; box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+            我在左边
+        </div>
+        <div class="col-xs-8"
+             style="background-color: #dedef8; box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+            我在右边
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <p>
+            排序后
+        </p>
+        <div class="col-xs-4 col-xs-push-8"
+             style="background-color: #dedef8; box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+            我在左边
+        </div>
+        <div class="col-xs-8 col-xs-pull-4"
+             style="background-color: #dedef8; box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+            我在右边
+        </div>
+    </div>
+    <div class="container">
+        <form role="form">
+            <div class="form-group">
+                <label for="name1">名称</label>
+                <input type="text" class="form-control" id="name1" placeholder="请输入名称"/>
+            </div>
+            <div class="form-group">
+                <label for="inputfile">文件输入</label>
+                <input type="file" id="inputfile"/>
+                <p class="help-block">这里是块级帮助文本的实例。</p>
+            </div>
+            <button type="submit" class="btn btn-default">提交</button>
+        </form>
+    </div>
+    <div class="container">
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <label class="sr-only" for="name">名称</label>
+                <input type="text" class="form-control" id="name" placeholder="请输入名称"/>
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="inputfile">文件输入</label>
+                <input type="file" id="inputfile">
+            </div>
+        </form>
+    </div>
+    <div class="container">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="firstname" class="col-sm-2 control-label">名字</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="firstname" placeholder="请输入名字">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastname" class="col-sm-2 control-label">姓</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="lastname" placeholder="请输入姓">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">请记住我
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">登录</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container">
+        <p>标签式的导航菜单</p>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">SVN</a></li>
+            <li><a href="#">iOS</a></li>
+            <li><a href="#">VB.Net</a></li>
+            <li><a href="#">Java</a></li>
+            <li><a href="#">PHP</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <p>基本的胶囊式导航菜单</p>
+        <ul class="nav nav-pills">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">SVN</a></li>
+            <li><a href="#">iOS</a></li>
+            <li><a href="#">VB.Net</a></li>
+            <li><a href="#">Java</a></li>
+            <li><a href="#">PHP</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <p>垂直的胶囊式导航菜单</p>
+        <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">SVN</a></li>
+            <li><a href="#">iOS</a></li>
+            <li><a href="#">VB.Net</a></li>
+            <li><a href="#">Java</a></li>
+            <li><a href="#">PHP</a></li>
+        </ul>
+    </div>
+    <div class="classA"></div>
+
+</div>
+</body>
+</html>

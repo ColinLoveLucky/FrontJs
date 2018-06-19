@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJs</title>
+    <style type="text/css">
+        input.ng-invalid {
+            background-color: lightblue;
+        }
+
+        input.ng-valid {
+            background-color: green;
+        }
+
+        /*input.ng-dirty{*/
+        /*background-color: bisque;*/
+        /*}*/
+        .divHide {
+            transition: all linear 0.5s;
+            background-color: lightblue;
+            height: 100px;
+        }
+
+        .ng-hide {
+            height: 0;
+        }
+
+        .expander {
+            border: 1px solid black;
+            width: 250px;
+        }
+
+        .expander > .title {
+            background-color: black;
+            color: white;
+            padding: .1em .3em;
+            cursor: pointer;
+        }
+
+        .expander > .body {
+            padding: .1em .3em;
+        }
+
+        #scrollArea {
+
+            height: 280px;
+            overflow: auto;
+
+        }
+
+        #bottom {
+
+            display: block;
+            margin-top: 2000px;
+
+        }
+    </style>
+    <script
+            src="http://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular-animate.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
+</head>
+<body>
+<div ng-app="myApp">
+    <script type="text/ng-template" id="embedded.home.html">
+        <h1> Home </h1>
+    </script>
+    <script type="text/ng-template" id="embedded.about.html">
+        <h1> About </h1>
+    </script>
+    <div>
+        <h2>AngularJS 路由应用</h2>
+        <ul>
+            <li><a href="#/About">About</a></li>
+            <li><a href="#/Home">Home</a></li>
+            <li><a href="#/">首页</a></li>
+            <li><a href="#/computers">电脑</a></li>
+            <li><a href="#/printers">打印机</a></li>
+            <li><a href="#/blabla">其他</a></li>
+        </ul>
+    </div>
+    <div ng-view></div>
+    <div ng-controller="myCtrl">
+        <p>name:<input type="text" ng-model="name"></p>
+        <h1>Hello {{name}}</h1>
+        <p>name:<span ng-bind="firstName" ng-init="firstName='John'"></span></p>
+        <p>firstExpression:{{5+5}}</p>
+        名: <input type="text" ng-model="firstName2"><br>
+        姓: <input type="text" ng-model="lastName2"><br>
+        <br>
+        姓名: {{firstName2 + " " + lastName2}}
+        <span ng-bind="abc"></span>
+        <p ng-init="person={firstName:'john',lastName:'doe'}">{{person.firstName}}</p>
+        <p ng-init="points=[1,2,3,4]"> {{ points[2] }}</p>
+        <div ng-init="names=[{
+        name:'jani',country:'norway'
+        },{
+        name:'Hege',country:'Swwden'
+        },{
+        name:'Kai',country:'Denmark'
+        }]">
+            <ul>
+                <li ng-repeat="x in names">
+                    {{x.name + ' '+x.country}}
+                </li>
+            </ul>
+        </div>
+        <!--<runoob-directive></runoob-directive>-->
+        <div class="runoob-directive"></div>
+        <form name="myForm" ng-init="myText='test@runoob.com'">
+            Eamil:
+            <input type="email" name="myAddress" ng-model="myText" required>
+            <h1>状态</h1>
+            <!--<span ng-show="myform.myAddress.$error.email">不是合法邮箱</span>-->
+            <p>Valid: {{myForm.myAddress.$valid}} (如果输入的值是合法的则为 true)。</p>
+            <p>Dirty: {{myForm.myAddress.$dirty}} (如果值改变则为 true)。</p>
+            <p>Touched: {{myForm.myAddress.$touched}} (如果通过触屏点击则为 true)。</p>
+            <p>Error: {{myForm.myAddress.$error}} (如果通过错误则为 true)。</p>
+        </form>
+        <div>
+            <input ng-model="name">
+            <h1>{{greeting}}</h1>
+            <button ng-click="sayHello()">Click Me</button>
+        </div>
+        <div>
+            Hello Root:
+            {{rootName}}
+        </div>
+    </div>
+    <div ng-controller="namesCtrl">
+        外部引用:
+        <ul>
+            <li ng-repeat="x in names">
+                {{ x.name + ', ' + x.country }}
+            </li>
+        </ul>
+    </div>
+    <div ng-controller="personCtrl">
+        <p>{{lastName|uppercase}}</p>
+    </div>
+    <div ng-controller="costCtr">
+        数量: <input type="number" ng-model="quantity">
+        价格: <input type="number" ng-model="price">
+        <p>总价 = {{ (quantity * price) | currency }}</p>
+    </div>
+    <div ng-controller="orderByCtr">
+        <ul>
+            <li ng-repeat="x in names | orderBy:'country'">
+                {{ x.name + ', ' + x.country }}
+            </li>
+        </ul>
+    </div>
+    <div ng-controller="filterCtr">
+        <p>输入过滤:</p>
+
+        <p><input type="text" ng-model="test"></p>
+        <ul>
+            <li ng-repeat="x in names | filter:test | orderBy:'country'">
+                {{ (x.name | uppercase) + ', ' + x.country }}
+            </li>
+        </ul>
+    </div>
+    <div ng-controller="ResverCtr">
+        姓名: {{ msg | reverse }}
+    </div>
+    <div ng-controller="ruleCtr">
+        {{1490161945000 | date:"yyyy-MM-dd HH:mm:ss"}}<br>
+        {{149016.1945000 | number:2}}<br>
+        {{ "lower cap string" | uppercase }}<br>
+        {{ 250 | currency }} <br>
+        {{ 250 | currency:"RMB ￥ " }} // 结果：RMB ￥ 250.00
+        <br>
+        {{"1234567890" | limitTo :6}} // 从前面开始截取6位<br>
+        {{"1234567890" | limitTo:-4}} // 从后面开始截取4位
+    </div>
+    <div ng-controller="serviceCtr">
+        <p> 当前页面的url:</p>
+        <h3>{{myUrl}}</h3>
+    </div>
+    <div ng-controller="httpCtrl">
+        <p>欢迎信息:</p>
+        <h1>{{myWelcome}}</h1>
+    </div>
+    <div ng-controller="timeoutCtrl">​
+        <p>两秒后显示信息:</p>​
+        <h1>{{myHeader}}</h1>​
+    </div>
+    <div ng-controller="intervalCtrl">
+        <p>现在时间是:</p>
+        <h1>{{theTime}}</h1>
+    </div>
+    <div ng-controller="itselfService">
+        <p>255 的16进制是:</p>
+        <h1>{{hex}}</h1>
+        <h1>{{175|myFormat}}</h1>
+    </div>
+    <div ng-controller="selectCtrl">
+        <select ng-init="selectedName = names[0]" ng-model="selectedName" ng-options="x for x in names">
+        </select>
+
+        <select>
+            <option ng-repeat="x in names">{{x}}</option>
+        </select>
+
+        <p>选择网站:</p>
+
+        <select ng-model="selectedSite">
+            <option ng-repeat="x in sites" value="{{x.url}}">{{x.site}}</option>
+        </select>
+        <h1>你选择的是: {{selectedSite}}</h1>
+
+        <p>选择的网站2：</p>
+        <select ng-model="selectedSite" ng-options="x.site for x in sites">
+        </select>
+        <h1>你选择的是: {{selectedSite.site}}</h1>
+        <p>网址为: {{selectedSite.url}}</p>
+
+        <p>选择的网站3是:</p>
+
+        <select ng-model="selectedSite3" ng-options="x for (x, y) in webSites">
+        </select>
+
+        <h1>你选择的值是: {{selectedSite3}}</h1>
+
+        <p>选择一辆车:</p>
+
+        <select ng-model="selectedCar" ng-options="y.brand for (x, y) in cars"></select>
+        <p>你选择的是: {{selectedCar.brand}}</p>
+        <p>型号为: {{selectedCar.model}}</p>
+        <p>颜色为: {{selectedCar.color}}</p>
+
+    </div>
+    <div ng-controller="tableCtr">
+        <table>
+            <tr ng-repeat="x in names">
+                <td style="{{$even?'background-color: #f1f1f1':''}}">{{$index + 1}}</td>
+                <td style="{{$even?'background-color: #f1f1f1':''}}">{{ x.Name }}</td>
+                <td style="{{$even?'background-color: #f1f1f1':''}}">{{ x.Country
+                    }}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div ng-init="mySwitch=true">
+        <p>
+            <button ng-disabled="mySwitch">点我!</button>
+        </p>
+        <p>
+            <input type="checkbox" ng-model="mySwitch"/>按钮
+        </p>
+        <p>
+            {{ mySwitch }}
+        </p>
+    </div>
+    <div>
+        <p ng-show="true">我是可以被看见的</p>
+        <p ng-show="false">隐藏</p>
+    </div>
+    <div ng-controller="ClikCtr">
+
+        <button ng-click="count = count + 1">点我！</button>
+
+        <p>{{ count }}</p>
+
+
+        <button ng-click="toggle()">隐藏/显示</button>
+
+        <p ng-hide="myVar">
+            名: <input type="text" ng-model="firstName"><br>
+            姓名: <input type="text" ng-model="lastName"><br>
+            <br>
+            Full Name: {{firstName + " " + lastName}}
+        </p>
+
+    </div>
+    <div>
+        <form>
+            选择一个选项:
+            <input type="radio" ng-model="myVar" value="dogs">Dogs
+            <input type="radio" ng-model="myVar" value="tuts">Tutorials
+            <input type="radio" ng-model="myVar" value="cars">Cars
+            <div ng-switch="myVar">
+                <div ng-switch-when="dogs">
+                    <h1>Dogs</h1>
+                    <p>welcome to a world of dogs</p>
+                </div>
+
+                <div ng-switch-when="tuts">
+                    <h1>Tutorials</h1>
+                    <p>Learn from examples.</p>
+                </div>
+                <div ng-switch-when="cars">
+                    <h1>Cars</h1>
+                    <p>Read about cars.</p>
+                </div>
+            </div>
+        </form>
+
+        <div ng-controller="formCtrl">
+            <form novalidate>
+                First Name:<br>
+                <input type="text" ng-model="user.firstName"><br>
+                Last Name:<br>
+                <input type="text" ng-model="user.lastName">
+                <br><br>
+                <button ng-click="reset()">RESET</button>
+            </form>
+            <p>form = {{user}}</p>
+            <p>master = {{master}}</p>
+        </div>
+    </div>
+    <div ng-controller="validateCtrl">
+        <form name="validateForm" novalidate>
+            <p>用户名:<br>
+                <input type="text" name="user" ng-model="user" required>
+                <span ng-show="validateForm.user.$error.required">用户名是必须的。</span>
+            </p>
+            <p>邮箱:<br>
+                <input type="email" name="email" ng-model="email" required>
+                <span ng-show="validateForm.email.$error.required">邮箱是必须的。</span>
+                <span ng-show="validateForm.email.$error.email">非法的邮箱地址。</span>
+            </p>
+            <p>
+                <input type="submit"
+                       ng-disabled="validateForm.user.$dirty && validateForm.user.$invalid ||
+validateForm.email.$dirty && validateForm.email.$invalid">
+            </p>
+        </form>
+    </div>
+    <div ng-controller="siteCtr">
+        <div ng-include="'sites.html'"></div>
+    </div>
+    <div>
+
+        <h1>隐藏 DIV: <input type="checkbox" ng-model="myCheck"></h1>
+
+        {{myCheck}}
+        <div class="divHide" ng-hide="myCheck"></div>
+    </div>
+    <div ng-controller="DICtr">
+        ValueDi: {{number}}
+        factoryValue: {{factoryValue}}
+        Add:{{addProvider}}
+        constantValue:{{constValue}}
+    </div>
+    <div ng-controller="cacheCtr">
+        CacheValue:{{cacheValue}}
+    </div>
+    <div ng-controller="cache2Ctr">
+        CacheValue:{{cacheValue}}
+    </div>
+    ----
+    <div id="divController" ng-controller="MyController as appCtrl">
+        <div compile="appCtrl.html"></div>
+    </div>
+    ---
+    <hello></hello>
+    --
+    <world>
+        <br/>
+        <span>原始的内容，</span><br/>
+        <span>还会在这里。</span>
+    </world>
+    <world>
+    </world>
+    ---
+    <div ng-controller='colinCtr'>
+        <div ng-repeat='thing in things'>
+            {{thing}}.
+            <colin></colin>
+        </div>
+    </div>
+    --
+    <div ng-controller='SomeController'>
+        <expander class='expander' expander-title='title'>
+            {{text}}
+        </expander>
+    </div>
+
+    <div ng-controller='AccordingCtr'>
+        <accordion>
+            <expander class='expander' ng-repeat='expander in expanders' expander-title='expander.title'>
+                {{expander.text}}
+            </expander>
+        </accordion>
+    </div>
+
+    <div ng-controller="watchCtr">
+        <input type="text" ng-model="name">
+        改变次数:{{count}}--{{name}}
+    </div>
+
+    <div ng-controller="MessageController">
+        Delayed Message: {{message}}
+        <div style="width: 100px;width:300px; background-color: bisque" ng-click="show()">
+            {{name}}
+            {{age}}
+        </div>
+        ---
+        <div>
+            {{$eval('a+b')}}
+        </div>
+    </div>
+    <div my-attr="obj.name" my-directive>testing</div>
+
+    <div id="scrollArea" ng-controller="ScrollController">
+        <a ng-click="gotoBottom()">Go to bottom</a>
+        <a id="bottom"></a> You're at the bottom!
+    </div>
+</div>
+<script>
+    var app = angular.module("myApp", ['ngAnimate', 'ngRoute']);
+    app.controller('myCtrl', function ($scope, $rootScope) {
+        $scope.firstName2 = 'John';
+        $scope.lastName2 = "Doe";
+        $scope.abc = "abc";
+        $rootScope.rootName = "root"
+        $scope.name = "Runoob";
+        $scope.sayHello = function () {
+            $scope.greeting = 'Hello' + $scope.name + "!";
+        }
+    })
+    app.directive('runoobDirective', function () {
+        return {
+            restrict: "C",
+            template: "<h1>自定义指令</h1>"
+        }
+    });
+</script>
+
+<script src="namesof.js"></script>
+<script type="text/javascript" src="personCtrl.js"></script>
+<script type="text/javascript" src="costJs.js"></script>
+<script type="text/javascript" src="orderByJs.js"></script>
+<script type="text/javascript" src="filterJs.js"></script>
+<script type="text/javascript" src="reverseJs.js"></script>
+<script type="text/javascript" src="RuleJs.js"></script>
+<script type="text/javascript" src="serviceJs.js"></script>
+<script type="text/javascript" src="httpJs.js"></script>
+<script type="text/javascript" src="timeoutJs.js"></script>
+<script type="text/javascript" src="intervalJs.js"></script>
+<script type="text/javascript" src="itselfJs.js"></script>
+<script type="text/javascript" src="selectJs.js"></script>
+<script type="text/javascript" src="tableJs.js"></script>
+<script type="text/javascript" src="eventJs.js"></script>
+<script type="text/javascript" src="formJs.js"></script>
+<script type="text/javascript" src="validateFormJs.js"></script>
+<script type="text/javascript" src="siteJs.js"></script>
+<script type="text/javascript" src="DIJs.js"></script>
+<script type="text/javascript" src="routerJs.js"></script>
+<script type="text/javascript" src="CacheJs.js"></script>
+<script type="text/javascript" src="compliedJs.js"></script>
+<script type="text/javascript" src="directivejs.js"></script>
+<script type="text/javascript" src="watch.js"></script>
+<script type="text/javascript" src="digestApply.js"></script>
+<script type="text/javascript" src="parseJs.js"></script>
+<script type="text/javascript" src="anchorScroll.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PageScroll</title>
+    <style type="text/css">
+        .container {
+            width: 4500px;
+            margin: 20px auto;
+            padding: 0;
+            background-color: #faf7ec;
+            font-size: 12px;
+            text-align: left;
+        }
+
+        .block0, .block1, .block2, .block3, .block4, .block5 {
+            border-top: 1px solid #999999;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .block0 {
+            border-bottom: 4px solid #999999;
+            background-color: #a0dcf8;
+            border-top: none;
+        }
+    </style>
+    <script type="text/javascript" src="Js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //href="#anchor1"
+            $(".link").click(function () {
+                var num = $(this).attr('name').substr(1);
+                $('html,body').animate({scrollTop: $('#anchor' + num).offset().top}, 1000);
+                // $('html,body').animate({scrollLeft:3000},1000);
+            });
+        });
+    </script>
+</head>
+<body>
+<div align="center">
+    <div class="container">
+        <a name="anchor0"></a>
+        <div class="block0">
+            <a class="link" name="a1" href="#">链接 1</a> |
+            <a class="link" name="a2" href="#">链接 2</a> |
+            <a class="link" name="a3" href="#">链接 3</a> |
+            <a class="link" name="a4" href="#">链接 4</a> |
+            <a class="link" name="a5" href="#">链接 5</a>
+        </div>
+        <a id="anchor1"></a>
+        <div class="block1">
+            <h3><a class="link" name="a0" href="#">顶部</a>
+                链接 1</h3>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+        </div>
+        <a id="anchor2"></a>
+        <div class="block2">
+            <h3><a class="link" name="a0" href="#">顶部</a>
+                链接 2</h3>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+        </div>
+        <a id="anchor3"></a>
+        <div class="block3">
+            <h3><a class="link" name="a0" href="#">顶部</a>
+                链接 3</h3>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+        </div>
+        <a id="anchor4"></a>
+        <div class="block4">
+            <h3><a class="link" name="a0" href="#">顶部</a>
+                链接 4</h3>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+        </div>
+        <a id="anchor5"></a>
+        <div class="block5">
+            <h3><a class="link" name="a0" href="#">顶部</a>
+                链接 5</h3>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="LinkFun" id="btnLinkFun">
+<input type="button" value="LinkFun2" id="btnLinkFun2">
+<input type="button" value="LinkJqueryFun3" id="btnLinkFun3">
+<div id="inp" style="width: 100px; height: 100px; background-color: green;"></div>
+<script type="text/javascript" src="Js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function Dog() {
+            this.run = function () {
+                alert("The Dog is Running......");
+                return this;
+            };
+            this.eat = function () {
+                alert("After running the dog is eatting....");
+                return this;
+            };
+            this.sleep = function () {
+                alert("After eatting the dog is running.....");
+                return this;
+            };
+        };
+        $("#btnLinkFun").click(function () {
+            var dog2 = new Dog();
+            dog2.run().eat().sleep();
+        });
+        $("#btnLinkFun2").click(function () {
+            (function () {
+                function _$(els) {
+                    this.elements = [];
+                    for (var i = 0, len = els.length; i < len; i++) {
+                        var element = els[i];
+                        if (typeof element == "string") {
+                            element = document.getElementById(element);
+                        }
+                        this.elements.push(element);
+                    }
+                }
+
+                _$.prototype = {
+                    each: function (fn) {
+                        for (var i = 0, len = this.elements.length; i < len; i++) {
+                            fn.call(this, this.elements[i]);
+                        }
+                        return this;
+                    },
+                    setStyle: function (prop, val) {
+                        this.each(function (el) {
+                            el.style[prop] = val;
+                        });
+                        return this;
+                    },
+                    show: function () {
+                        var that = this;
+                        this.each(function (el) {
+                            that.setStyle("display", "block");
+                        });
+                        return this;
+                    }
+                }
+                window.$ = function () {
+                    return new _$(arguments);
+                }
+            })();
+        })
+
+        $("#btnLinkFun3").click(function () {
+            (function (window, undefined) {
+                function _$(arguments) {
+                    var idselector = /#\w+/;
+                    this.dom;
+                    if (idselector.test(arguments[0])) {
+                        this.dom = document.getElementById(arguments[0].substring(1));
+                    } else {
+                        throw new Error("arguments is error!");
+                    }
+                };
+                Function.prototype.method = function (methodName, fn) {
+                    this.prototype[methodName] = fn;
+                    return this;
+                }
+                _$.prototype = {
+                    constructor: _$,
+                    addEvent: function (type, fn) {
+                        if (window.addEventListener) {
+                            this.dom.addEventListener(type, fn);
+                        } else if (window.attachEvent) {
+                            this.dom.attachEvent('on' + type, fn);
+                        }
+                        return this;
+                    },
+                    setStyle: function (prop, val) {
+                        this.dom.style[prop] = val;
+                        return this;
+                    }
+                };
+                window.$ = _$;
+                _$.onReady = function (fn) {
+                    window.$ = function () {
+                        return new _$(arguments);
+                    };
+                    fn();
+                }
+            })(window);
+            $.onReady(function () {
+                var inp = $('#inp');
+                inp.addEvent('click', function () {
+                    alert("我被Click");
+                }).setStyle("backgroundColor", "red");
+            });
+        })
+    });
+
+
+</script>
+</body>
+</html>

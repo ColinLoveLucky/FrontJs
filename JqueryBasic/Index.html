@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Juqery</title>
+    <script type="text/javascript" src="Js/jquery-3.2.1.min.js"></script>
+
+</head>
+<body>
+<input type="button" id="btnWhen" value="WhenParams">
+<input type="button" id="btnWhenMulti" value="WhenMulti">
+<input type="button" id="btnAjax" value="Ajax"/>
+<input type="button" id="btnWait" value="WaitingLong">
+<input type="button" id="btnDeferred" value="Deferred"/>
+<input type="button" id="btnPromise" value="Promise">
+<input type="button" id="btnToggle" value="Toggle"/>
+<div id="divToggle" style="height:300px; width: 300px; background-color: green"></div>
+<input type="button" id="btnOne" value="OneExecute"/>
+<input type="button" id="autoTrigger" value="AutoTrigger"/>
+<a href="www.google.com">有害的连接</a>
+<input type="button" id="btnAnimate" value="Animate"/>
+<div id="divAnimate" style="background-color: green; width: 50px;height: 50px;"></div>
+<input type="button" id="btnExpand" value="JqueryExtend"/>
+<input type="button" id="btnFnExtend" value="JqueryFnExtend"/>
+<table border="1px solid #e0e0e0">
+    <tr>
+        <td>Name</td>
+        <td>age</td>
+    </tr>
+    <tr>
+        <td>zhangsan</td>
+        <td>18</td>
+    </tr>
+</table>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnWhen").click(function () {
+            $.when({test: 123}).done(function (x) {
+                alert(x.test);
+            })
+        });
+        $("#btnWhenMulti").click(function () {
+            var d1 = $.Deferred();
+            var d2 = $.Deferred();
+            var d3 = $.Deferred();
+            $.when(d1, d2, d3).done(function (v1, v2, v3) {
+                alert(v1);
+                alert(v2);
+                alert(v3);
+            });
+            d1.resolve();
+            d2.resolve("abc");
+            d3.resolve(1, 2, 3, 4, 5);
+        })
+        $("#btnAjax").click(function () {
+            $.ajax("data.json").done(function (x) {
+                alert("name:" + x.name);
+            }).fail(function () {
+                alert("failure");
+            })
+        });
+        var dtd = $.Deferred();
+        var wait = function (dtd) {
+            var tasks = function () {
+                dtd.resolve({
+                    "name": "zhangsan"
+                });
+//               dtd.reject();
+            };
+            setTimeout(tasks, 3000);
+            return dtd;
+        };
+        $("#btnWait").click(function () {
+            $.when(wait(dtd))
+                .done(function (x) {
+                    alert("name:" + x.name);
+                }).fail(function () {
+                alert("failure");
+            });
+        });
+
+        function runAsync() {
+            var def = $.Deferred();
+            setTimeout(function () {
+                def.resolve({
+                    "name": "zhangsan",
+                    "age": "12"
+                });
+            }, 2000);
+            return def;
+        }
+
+        $("#btnDeferred").click(function () {
+//            runAsync().then(function (data) {
+//                alert("name:"+data.name);
+//            })
+            $.when(runAsync()).done(function (data) {
+                alert("name:" + data.name);
+            })
+        })
+
+        function runPromiseAsync() {
+            var def = $.Deferred();
+            setTimeout(function () {
+                def.resolve({
+                    "name": "zhangsan",
+                    "age": "12"
+                });
+            }, 2000);
+            return def.promise();//返回首先的Deferred对象
+        }
+
+        $("#btnPromise").click(function () {
+            $.when(runPromiseAsync()).done(function (data) {
+                alert("name:" + data.name);
+            })
+        })
+        $("#btnToggle").click(function () {
+            $("#divToggle").toggle("3000");
+        });
+        $("#btnOne").one("click", function () {
+            alert("Hello World");
+        })
+        $("a").click(function (e) {
+            e.preventDefault();//阻止打开
+            $(this).css({
+                color: 'red'
+            });
+        })
+        $("#autoTrigger").click(function () {
+            $("a").trigger('click');
+        })
+        $("#btnAnimate").click(function () {
+            $("#divAnimate").animate({
+                width: "300px",
+                height: "300px",
+                opacity: 0.25
+            }, 3000, function () {
+                alert("Success");
+            })
+        })
+        $("table").on("click", "td", function () {
+            $(this).css({
+                color: "red"
+            });
+        });
+        $.extend({
+            Msg: function (message) {
+                alert(message);
+            }
+        });
+        $.fn.extend({
+            ShowHtml: function (showHtml) {
+                alert(showHtml);
+            }
+        });
+
+        $("#btnExpand").click(function () {
+            $.Msg("Hello World");
+        })
+        $("#btnFnExtend").click(function () {
+            $("#btnFnExtend").ShowHtml("Hello World");
+        })
+
+
+
+    })
+</script>
+</body>
+</html>

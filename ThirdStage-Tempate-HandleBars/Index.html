@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="Js/handlebars-v4.0.10.js"></script>
+</head>
+<body>
+<script id="tp1" type="text/x-handlebars-template">
+    <h1>{{title}}</h1>
+    <p>{{content.title}}</p>
+</script>
+<script type="text/x-handlebars-template" id="tp2">
+    <h1>{{title}}</h1>
+    <ul class="list-group">
+        {{#articles}}
+        <li class="list-group-item">{{article}}</li>
+        {{/articles}}
+    </ul>
+</script>
+<script id="table-template" type="text/x-handlebars-template">
+    {{#each student}}
+    {{#if name}}
+    {{#compare age 20}}
+    <tr>
+        <td>{{name}}</td>
+        <td>{{transformat sex}}</td>
+        <td>{{age}}</td>
+    </tr>
+    {{else}}
+    <tr>
+        <td>?</td>
+        <td>?</td>
+        <td>?</td>
+    </tr>
+    {{/compare}}
+    {{/if}}
+    {{/each}}
+</script>
+<div id="divTp1" class="container"></div>
+<div id="divTp2" class="container"></div>
+<div id="divTp3" class="container"></div>
+<div id="divTp4" class="container"></div>
+<div id="divTp5" class="container"></div>
+<div id="divTp6" class="container"></div>
+<div class="container">
+    <table class="table table-striped table-border">
+        <thead>
+        <tr>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+        </tr>
+        </thead>
+        <tbody id="tableList">
+
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+    $(function () {
+        var tp1 = $("#tp1").html();
+        var templateTp1 = Handlebars.compile(tp1);
+        var htmlTp1 = templateTp1({
+            title: "文章",
+            content: {
+                title: "春风十里不如你"
+            }
+        });
+        $("#divTp1").html(htmlTp1);
+
+        var tp2 = $("#tp2").html();
+        var template2 = Handlebars.compile(tp2);
+        var htmlTp2 = template2({
+            title: "中外名著",
+            articles:
+                [
+                    {article: "追风筝的人"},
+                    {article: "巴黎圣母院"},
+                    {article: "悲惨世界"},
+                    {article: "围城"}
+                ]
+        });
+        $("#divTp2").html(htmlTp2);
+
+        var tp3 = "<ul class='list-group'>" +
+            "{{#each name}} <li class='list-group-item'>" +
+            "{{this}}</li>{{/each}}";
+        var template3 = Handlebars.compile(tp3);
+        $("#divTp3").html(template3({
+            name: ["Html", "Css", "Javascript"]
+        }));
+
+        var tp4 = "{{#if list}} " +
+            "<ul class='list-group'> {{#each list}}<li class='list-group-item'>" +
+            "{{this.article}}</li> {{/each}}</ul>" +
+            "{{else}}<p>{{error}}</p>{{/if}}";
+
+        var template4 = Handlebars.compile(tp4);
+
+        $("#divTp4").html(template4({
+            list: [
+                {article: "蛙"},
+                {article: "嬴政王朝"}
+            ],
+            error: "Error OutPut Message"
+        }));
+
+        var tp5 = "<h1>{{title}}</h1>" +
+            "{{#with author}}<h2>By {{firstName}}-{{lastName}}</h2>{{/with}}";
+        var template5 = Handlebars.compile(tp5);
+        $("#divTp5").html(template5({
+            title: "my first post!",
+            author: {
+                firstName: "Charles",
+                lastName: "Jolley"
+            }
+        }));
+
+        var data = {
+            "student": [
+                {
+                    "name": "张三",
+                    "sex": "0",
+                    "age": 23
+                },
+                {
+                    "sex": "1",
+                    "age": 18
+                },
+                {
+                    "name": "妞妞",
+                    "sex": "1",
+                    "age": 22
+                }
+            ]
+        };
+
+        var myTemplate = Handlebars.compile($("#table-template").html());
+
+        Handlebars.registerHelper("compare", function (v1, v2, options) {
+            if (v1 > v2) {
+                //满足添加继续执行
+                return options.fn(this);
+            } else {
+                //不满足条件执行{{else}}部分
+                return options.inverse(this);
+            }
+        });
+
+        Handlebars.registerHelper("transformat", function (value) {
+            if (value == 0) {
+                return "男";
+            } else if (value == 1) {
+                return "女";
+            }
+        });
+
+        $('#tableList').html(myTemplate(data));
+
+        var compiled = {};
+        $.fn.handlebars = function (template, data) {
+            if (template instanceof jQuery)
+                template = $(template).html();
+            compiled[template] = Handlebars.compile(template);
+            this.html(compiled[template](data));
+        };
+        var tp6 = "<h1>{{name}}</h1>";
+        $("#divTp6").handlebars(tp6, {name: "Alan"});
+    })
+
+
+
+</script>
+</body>
+</html>

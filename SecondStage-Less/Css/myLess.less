@@ -1,0 +1,39 @@
+@color: #e0e0e0;
+@backgroundColor: #2e2e2e;
+#firstLess {
+  background-color: @backgroundColor;
+  color: @color;
+}
+
+.rounded-corners(@radius:5px) {
+  border-radius: @radius;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  width: 200px;
+  height: 200px;
+  background-color: @backgroundColor;
+  margin: 10px;
+  color: @color;
+}
+
+#header {
+  .rounded-corners;
+  color: @color*3;
+  h1 {
+    font-size: 26px;
+    font-weight: bold;
+  }
+  p {
+    font-size: 12px;
+    a {
+      text-decoration: none;
+      &:hover {
+        border-width: 1px;
+      }
+    }
+  }
+}
+
+#footer {
+  .rounded-corners(10px);
+}

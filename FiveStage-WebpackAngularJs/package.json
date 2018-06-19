@@ -1,0 +1,41 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "angualrjsProject",
+  "main": "index.js",
+  "dependencies": {
+    "html-loader": "^0.5.1",
+    "webpack": "^3.6.0"
+  },
+  "devDependencies": {
+    "angular": "^1.6.6",
+    "angular-cookies": "^1.6.6",
+    "angular-ui-bootstrap": "^2.5.0",
+    "angular-ui-router": "^1.0.3",
+    "angularjs": "0.0.1",
+    "autoprefixer": "^7.1.4",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "bootstrap": "^3.3.7",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.30.1",
+    "jquery": "^3.2.1",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
+    "ng-table": "^3.0.1",
+    "postcss-loader": "^2.0.6",
+    "style-loader": "^0.18.2",
+    "webpack-dev-server": "^2.8.2"
+  },
+  "scripts": {
+    "start": "webpack",
+    "server": "webpack-dev-server --open",
+    "build": "set NODE_ENV=production && webpack --config webpack.production.config.js --progress",
+    "dev": "set NODE_ENV=development && node webpack.config.js"
+  },
+  "author": "colin",
+  "license": "ISC"
+}

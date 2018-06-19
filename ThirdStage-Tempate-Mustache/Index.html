@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="Js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="Js/mustache.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container" id="user_info"></div>
+<div class="container" id="divContainer">
+</div>
+<div class="container" id="divUser"></div>
+<div class="container" id="divHtml"></div>
+<div class="container" id="divPart"></div>
+<script id="tp1" type="text/html">
+    Hello {{name}}!
+</script>
+<script id="tp2" type="text/html">
+    --{{#prop}}{{name}},{{/prop}}--
+</script>
+<script type="text/html" id="tp3">
+    --{{#prop}}Hello Colin{{/prop}}--
+</script>
+<script type="text/html" id="tp4">
+    --{{#person}}{{#student}}{{#address}}address: {{home}},age: {{age}}{{/address}}{{/student}}{{/person}}--
+</script>
+<script type="text/html" id="tp5">
+    --address:{{person.student.address.home}},age:{{age}}--
+</script>
+<div class="container" id="divComplier"></div>
+<div id="divTp2" class="container"></div>
+<div id="divTp3" class="container"></div>
+<div id="divTp4" class="container"></div>
+<div id="divTp5" class="container"></div>
+<script type="text/javascript">
+    $(function () {
+        var user = {name: "Olive", age: 23, sex: "girl"};
+        var template = "My name is {{name}},I'm {{age}},sex is {{sex}}";
+        var view = Mustache.render(template, user);
+        $("#user_info").html(view);
+        var users = {
+            result: [{name: "Only", age: 24, sex: "boy"},
+                {name: "for", age: 24, sex: "boy"},
+                {name: "Olive", age: 23, sex: "girl"}]
+        };
+        var userTempates = "<table class='table table-striped table-bordered'>" +
+            "<tr><td>Name</td><td>Age</td><td>Sex</td></tr>{{#result}}<tr><td>{{name}}</td>" +
+            "<td>{{age}}</td><td>{{sex}}</td></tr>{{/result}}</table>";
+        var views = Mustache.render(userTempates, users);
+        $("#divContainer").html(views);
+
+        var usersNull = {
+            result: [{name: null, age: 24, sex: "boy"},
+                {name: "for", age: 24, sex: "boy"},
+                {name: "Olive", age: 23, sex: "girl"}]
+        };
+        var userNullTempate = "<table class='table table-striped table-bordered'>" +
+            "<tr><td>Name</td><td>Age</td><td>Sex</td></tr>{{#result}}<tr>{{#name}}<td>{{name}}</td>" +
+            "<td>{{age}}</td><td>{{sex}}</td>{{/name}}</tr>{{/result}}</table>";
+
+        var userNullViews = Mustache.render(userNullTempate, usersNull);
+        $("#divUser").html(userNullViews);
+
+        var userHtml = {name: "<h1>Olive</h1>"};
+        var templateHtml = "my name is {{&name}}";
+        var viewHtml = Mustache.render(templateHtml, userHtml);
+        $("#divHtml").html(viewHtml);
+
+        var viewPart = {
+            names: [
+                {"name": "y"},
+                {"name": "z"},
+                {"name": "f"}
+            ]
+        };
+        var base = "<h2>Names</h2>{{#names}}{{>user}}{{/names}}";
+        var name = "<b>{{name}}</b>";
+        $("#divPart").html(Mustache.render(base, viewPart, {user: name}));
+
+        var tp1 = $("#tp1").html().trim();
+        Mustache.parse(tp1);
+        $("#divComplier").html(Mustache.render(tp1, {"name": "zhangsan"}));
+
+        var tp2 = $("#tp2").html().trim();
+        Mustache.parse(tp2);
+        $("#divTp2").html(
+            Mustache.render(tp2, {
+                prop: function () {
+                    return [{name: "jason"}, {name: "frank"}]
+                }
+            }));
+
+        var tp3 = $("#tp3").html().trim();
+        Mustache.parse(tp3);
+        $("#divTp3").html(Mustache.render(tp3, {
+            prop: function () {
+                return function (text, render) {
+                    return "<b>" + render(text) + "</b>";
+                }
+            }
+        }));
+
+        var tp4 = $("#tp4").html().trim();
+        Mustache.parse(tp4);
+        $("#divTp4").html(Mustache.render(tp4, {
+            age: 20,
+            person: {
+                student: {
+                    address: {
+                        home: "xxxxxxxxx"
+                    }
+                }
+            }
+        }));
+        var tp5 = $("#tp5").html().trim();
+        Mustache.parse(tp5);
+        $("#divTp5").html(Mustache.render(tp5, {
+            age: 120,
+            person: {
+                student: {
+                    address: {
+                        home: "I Wanna Be Free!"
+                    }
+                }
+            }
+        }));
+
+    })
+</script>
+</body>
+</html>

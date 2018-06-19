@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Banner</title>
+    <style>
+        #banner {
+            position: relative;
+            width: 478px;
+            border: 1px solid #666666;
+            overflow: hidden;
+            height: 286px;
+        }
+
+        #banner_bg {
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            bottom: 0px;
+            background-color: #000000;
+            filter: Alpha(Opacity=30);
+            opacity: 0.3;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        #banner_info {
+            position: absolute;
+            bottom: 0;
+            left: 5px;
+            height: 22px;
+            color: #FFFFFF;
+            z-index: 1001;
+            cursor: pointer;
+        }
+
+        #banner ul {
+            list-style: none;
+            position: absolute;
+            bottom: 3px;
+            right: 5px;
+            margin: 0;
+            padding: 0;
+            filter: Alpha(Opacity=80);
+            opacity: 0.3;
+            z-index: 1002;
+            cursor: pointer;
+        }
+
+        #banner ul li {
+            float: left;
+            color: #FFFFFF;
+            background-color: #6f4f67;
+            display: block;
+            border: 1px solid #333;
+            z-index: 1003;
+            padding: 0px 8px;
+        }
+
+        #banner ul li.on {
+            background-color: #000000;
+        }
+
+        #banner_list {
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript" src="Js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        var n=t=count = 0;
+        $(function () {
+            count = $("#banner_list a").length;
+            $("#banner_list a:not(:first-child)").hide();
+            $("#banner_info").html($("#banner_list a:first-child").find("img").attr("alt"));
+            $("#banner_info").click(function () {
+                window.open($("#banner_list a:first-child").attr("href"), "_blank");
+            });
+            $("#banner li").click(function () {
+                n = $(this).text() - 1;
+                if (n >= count)
+                    return;
+                $("#banner_info").html($("#banner_list a").eq(n).find("img").attr("alt"));
+                $("#banner_list a").filter(":visible").fadeOut(500).parent().children().eq(n).fadeIn(500);
+                $(this).toggleClass("on");
+                $(this).siblings().removeAttr("class");
+                $("#banner_info").unbind().click(function () {
+                    window.open($("#banner_list a").eq(i).attr('href'), "_blank")
+                })
+            });
+            t=setInterval("showAuto()",4000);
+            $("banner li").hover(function () {
+                clearInterval(t);
+            },function () {
+                t=setInterval("showAuto()",4000);
+            })
+        });
+        function showAuto() {
+            n=n>(count-1)?0:++n;
+            $("#banner li").eq(n).trigger("click");
+        }
+    </script>
+</head>
+<body>
+<div id="banner">
+    <div id="banner_bg"></div>
+    <div id="banner_info"></div>
+    <ul>
+        <li class="on">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <div id="banner_list">
+        <a href="#" target="_blank"><img src="imgs/p1.jpg" title="jquery插件库1" alt="jquery插件库1"></a>
+        <a href="#"
+           target="_blank"><img
+                src="imgs/p2.jpg" title="jquery插件库2" alt="jquery插件库2"></a> <a href="#" target="_blank"><img
+            src="imgs/p1.jpg" title="jquery插件库3" alt="jquery插件库3"></a> <a href="#" target="_blank"><img
+            src="imgs/p3.jpg" title="jquery插件库4" alt="jquery插件库4"></a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+React相关资料链接：
+React 入门：
+1菜鸟教程：http://www.runoob.com/react/react-tutorial.html
+2React官网：https://doc.react-china.org/docs/hello-world.html
+3：React机制流程 +为什么要使用Redux:https://segmentfault.com/a/1190000007642740
+4:Redux 简介:http://www.redux.org.cn/
+React 搭建框架:
+
+1:使用 webpack + react + redux + es6 开发组件化前端项目:https://segmentfault.com/a/1190000005969488
+2：我们这次项目使用的框架
+dva 架手架来快速构建
+dva+antDesigner:https://ant.design/docs/react/practical-projects-cn
+dva-cli 资料:https://github.com/dvajs/dva-cli
+dva +webpack 30分钟快速搭建项目的资料:https://github.com/sorrycc/blog/issues/18
+dva详细的docs:https://github.com/dvajs/dva-knowledgemap

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PopLayer</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .lbOverlay {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            zoom: 1;
+            background: #2f2e2e;
+            filter: Alpha(opacity=50);
+            -moz-opacity: 0.5;
+            opacity: 0.5;
+        }
+
+        .hidden_pro_au {
+            display: none;
+            text-align: left;
+            background: #ccc;
+            overflow: auto;
+            position: absolute;
+            z-index: 9999999;
+            width: 200px;
+            height: 30px;
+            left: 0;
+            top: 0;
+        }
+    </style>
+    <script type="text/javascript" src="Js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnShow").click(function () {
+                $(".lbOverlay").show();
+                var st=$(document).scrollTop();//页面滑动的高度
+                var objH=$(".hidden_pro_au").height();//浮动对象的高度
+                var ch=$(window).height();//屏幕的高度
+                var objT = Number(st) + (Number(ch) - Number(objH)) / 2;   //思路  浮动高度+（（屏幕高度-对象高度））/2
+                $(".hidden_pro_au").css("top", objT);
+                var sl = $(document).scrollLeft(); //页面滑动左移宽度
+                var objW = $(".hidden_pro_au").width();//浮动对象的宽度
+                var cw = $(window).width();//屏幕的宽度
+                var objL = Number(sl) + (Number(cw) - Number(objW)) / 2; //思路  左移浮动宽度+（（屏幕宽度-对象宽度））/2
+                $(".hidden_pro_au").css("left", objL);
+                $(".hidden_pro_au").slideDown("20000");//这里显示方式多种效果
+            });
+            $(".lbOverlay").click(function () {
+                $(".lbOverlay").hide();
+                $(".hidden_pro_au").hide();
+            })
+        });
+    </script>
+</head>
+<body>
+<button id="btnShow" onclick="show()">点我弹出遮罩层</button>
+<div class="lbOverlay" onclick="closeDiv()"></div>
+<div class="hidden_pro_au">显示具体的内容</div>
+</body>
+</html>
